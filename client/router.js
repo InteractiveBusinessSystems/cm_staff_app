@@ -1,9 +1,8 @@
-
 Router.configure({
   layoutTemplate: 'appBody',
   notFoundTemplate: 'notFound'
 });
 
-Router.route('/', function () {
-  this.render('MyTemplate');
+Router.map(function() {
+  this.route('home', {path: '/'})
 });
