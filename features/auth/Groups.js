@@ -1,13 +1,15 @@
 Groups = {
-
-    AddUserToGroup: function (userId, groups) {
-        Meteor.call("AddUserToGroup", userId, groups);
+    AddUserToGroup: function (userId, group) {
+        Meteor.call("AddUserToGroup", userId, group);
     },
 
-    RemoveUserFromGroup: function (userId, groups) {
-        Meteor.call("RemoveUserFromGroup", userId, groups);
+    RemoveUserFromGroup: function (userId, group) {
+        Meteor.call("RemoveUserFromGroup", userId, group);
     },
 
+    /**
+     * @return {boolean}
+     */
     UserHasGroup: function (group) {
         return Meteor.user().groups.indexOf("group") !== -1;
     }

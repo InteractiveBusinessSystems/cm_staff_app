@@ -1,0 +1,9 @@
+<template name="listUsers">
+    <ul>
+        {{#each userlist}}
+            <li>
+                {{getEmail emails}}: {{role}} {{arrayJoin groups }}
+            </li>
+        {{/each}}
+    </ul>
+</template>

@@ -1,9 +1,9 @@
 Meteor.methods({
-    AddUserToGroup: function (userId, groups) {
-        Meteor.users.update({_id: userId}, {$push: {groups: groups}});
+    AddUserToGroup: function (userId, group) {
+        Meteor.users.update({_id: userId}, {$addToSet: {groups: group}});
     },
-    RemoveUserFromGroup: function (userId, groups) {
-        Meteor.users.update({_id: userId}, {$pull: {groups: groups}});
+    RemoveUserFromGroup: function (userId, group) {
+        Meteor.users.update({_id: userId}, {$pull: {groups: group}});
     },
     SetUserRole: function (userId, role) {
         Meteor.users.update({_id: userId}, {$set: {role: role}});

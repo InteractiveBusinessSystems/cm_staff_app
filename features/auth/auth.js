@@ -12,7 +12,13 @@ if (Meteor.isServer) {
                 role: "admin"
             });
         }
-
+        if (Meteor.users.findOne({"emails.address": "user@ibs.com"}) == null) {
+            Accounts.createUser({
+                email: "user@ibs.com",
+                password: "garden",
+                role: "user"
+            });
+        }
     });
 
     Accounts.onCreateUser(function (options, user) {
@@ -31,8 +37,21 @@ if (Meteor.isServer) {
             this.ready();
         }
     });
+
+    //TODO: secure this
+    Meteor.publish("allUserData", function () {
+        return Meteor.users.find({}, {
+            fields: {
+                'role': 1,
+                'groups': 1,
+                'emails': 1,
+                'profile': 1
+            }
+        });
+    });
 }
 
 if (Meteor.isClient) {
     Meteor.subscribe('userData');
+    Meteor.subscribe("allUserData");
 }
