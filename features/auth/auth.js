@@ -2,10 +2,10 @@ Accounts.config({
     forbidClientAccountCreation: true
 });
 
-if(Meteor.isServer) {
-    Meteor.startup(function() {
+if (Meteor.isServer) {
+    Meteor.startup(function () {
         //Meteor.users.remove({});
-        if(Meteor.users.findOne({"emails.address":"ibs@ibs.com"}) == null) {
+        if (Meteor.users.findOne({"emails.address": "ibs@ibs.com"}) == null) {
             Accounts.createUser({
                 email: "ibs@ibs.com",
                 password: "garden",
@@ -33,6 +33,6 @@ if(Meteor.isServer) {
     });
 }
 
-if(Meteor.isClient) {
+if (Meteor.isClient) {
     Meteor.subscribe('userData');
 }
