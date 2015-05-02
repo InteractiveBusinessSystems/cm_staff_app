@@ -1,4 +1,4 @@
-Groups =  {
+Groups = {
 
     AddUserToGroup: function (userId, groups) {
         Meteor.call("AddUserToGroup", userId, groups);

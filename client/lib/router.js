@@ -1,8 +1,8 @@
 Router.configure({
-  layoutTemplate: 'appBody',
-  notFoundTemplate: 'notFound'
+    layoutTemplate: 'appBody',
+    notFoundTemplate: 'notFound'
 });
 
-Router.map(function() {
-  this.route('home', {path: '/'})
+Router.map(function () {
+    this.route('home', {path: '/'})
 });
