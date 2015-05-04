@@ -11,7 +11,6 @@ Meteor.methods({
 });
 
 if (Meteor.isServer) {
-    process.env.MAIL_URL = "smtp:dotsonjb14:Garden817@smtp.sendgrid.net:587";
     Meteor.methods({
         SendEmail: function (userId) {
             Accounts.sendEnrollmentEmail(userId);

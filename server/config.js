@@ -1,0 +1,1 @@
+process.env.MAIL_URL = "smtp:dotsonjb14:Garden817@smtp.sendgrid.net:587";
