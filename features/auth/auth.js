@@ -30,9 +30,8 @@ if (Meteor.isServer) {
 
     Meteor.publish("userData", function () {
         if (this.userId) {
-            var find = Meteor.users.find({_id: this.userId},
+            return Meteor.users.find({_id: this.userId},
                 {fields: {'role': 1, 'groups': 1}});
-            return find;
         } else {
             this.ready();
         }
