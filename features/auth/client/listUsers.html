@@ -1,4 +1,8 @@
 <template name="listUsers">
+    <form id="addUserForm">
+        <input type="text" id="email" name="email" placeholder="email"/>
+        <button type="submit" id="addUser">Add User</button>
+    </form>
     <ul>
         {{#each userlist}}
             <li>

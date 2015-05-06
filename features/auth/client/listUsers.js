@@ -6,3 +6,10 @@ Template.listUsers.helpers({
         return emails[0].address;
     }
 });
+
+Template.listUsers.events({
+    "submit #addUserForm": function (event) {
+        Meteor.call("CreateAccount", event.target.email.value);
+        return false;
+    }
+});
