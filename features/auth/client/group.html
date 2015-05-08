@@ -2,13 +2,17 @@
     In group
     <ul>
         {{#each usersInGroup}}
-            <li><button class="in-button">{{email .}}</button></li>
+            <li>
+                <button class="in-button">{{emails.[0].address}}</button>
+            </li>
         {{/each}}
     </ul>
     Not in group
     <ul>
         {{#each usersNotInGroup}}
-            <li><button class="not-in-button">{{email .}}</button></li>
+            <li>
+                <button class="not-in-button">{{emails.[0].address}}</button>
+            </li>
         {{/each}}
     </ul>
     <div>

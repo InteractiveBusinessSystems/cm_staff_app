@@ -7,7 +7,7 @@
     <ul>
         {{#each userlist}}
             <li>
-                {{getEmail emails}}: {{role}} {{arrayJoin groups }}
+                {{emails.[0].address}}
                 <a href="{{pathFor 'editUser' _id=_id}}">Edit</a>
             </li>
         {{/each}}

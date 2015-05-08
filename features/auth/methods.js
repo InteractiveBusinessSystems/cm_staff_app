@@ -7,6 +7,16 @@ Meteor.methods({
     },
     SetUserRole: function (userId, role) {
         Meteor.users.update({_id: userId}, {$set: {role: role}});
+    },
+    UpdateUser: function (userId, firstName, lastName) {
+        Meteor.users.update({_id: userId}, {
+            $set: {
+                "profile": {
+                    firstName: firstName,
+                    lastName: lastName
+                }
+            }
+        });
     }
 });
 

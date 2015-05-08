@@ -1,4 +1,6 @@
 Groups = {
+    PossibleGroups: ['Everyone', 'Volunteers', 'Committee Members', 'Committee Chairs', 'Board Members'],
+
     AddUserToGroup: function (userId, group) {
         Meteor.call("AddUserToGroup", userId, group);
     },
