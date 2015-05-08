@@ -1,4 +1,5 @@
 <template name="listUsers">
+    <h2>Users</h2>
     <form id="addUserForm">
         <input type="text" id="email" name="email" placeholder="email"/>
         <button type="submit" id="addUser">Add User</button>
@@ -7,6 +8,7 @@
         {{#each userlist}}
             <li>
                 {{getEmail emails}}: {{role}} {{arrayJoin groups }}
+                <a href="{{pathFor 'editUser' _id=_id}}">Edit</a>
             </li>
         {{/each}}
     </ul>
