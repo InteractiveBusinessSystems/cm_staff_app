@@ -1,9 +1,11 @@
 <template name="appBody">
     {{>loginButtons}}
-    start
+    <ul>
+        <li><a href="{{pathFor 'home'}}">Home</a></li>
+        <li><a href="{{pathFor 'listUsers'}}">List Users</a></li>
+        <li><a href="{{pathFor 'groups'}}">List Groups</a></li>
+    </ul>
 
     {{> yield}}
-
-    end
 
 </template>
