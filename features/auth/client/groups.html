@@ -2,7 +2,7 @@
     <ul>
       {{#each groupList}}
           <li>
-              <a href="/group/{{.}}">{{.}}</a>
+              <a href="{{pathFor 'group' groupName=.}}">{{.}}</a>
           </li>
       {{/each}}
     </ul>
