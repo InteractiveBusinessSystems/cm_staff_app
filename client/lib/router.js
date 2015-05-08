@@ -5,5 +5,7 @@ Router.configure({
 
 Router.map(function () {
     this.route('home', {path: '/'});
+    this.route('groups');
+    this.route('group', {path: '/group/:groupName'});
     this.route('listUsers')
 });

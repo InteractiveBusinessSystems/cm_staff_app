@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<template name="groups">
+    <ul>
+      {{#each groupList}}
+          <li>
+              <a href="/group/{{.}}">{{.}}</a>
+          </li>
+      {{/each}}
+    </ul>
+</template>
