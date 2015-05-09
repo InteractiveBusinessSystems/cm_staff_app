@@ -17,7 +17,7 @@
 
 .app-header-login{
     float: right;
-    height:40px;
+    height:55px;
     margin-right: 70px;
 }
 
@@ -55,6 +55,18 @@
 .navbar
 {
     margin-bottom: 15px ;
+}
+
+.navbar-toggle{
+    background-color: #f67f01;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+    background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+    background-color: #f67f01;
 }
 /*
 Import Fonts

@@ -1,7 +1,7 @@
 <template name="appBody">
     <div class="app-header">
         <div class="app-header-login">
-            {{>loginButtons}}
+
         </div>
         <div class="container" style="clear: both">
             {{>navigation}}
@@ -29,7 +29,7 @@
 </template>
 
 <template name="navigation">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -42,14 +42,13 @@
                 <a class="navbar-brand" href="{{pathFor route='home'}}">
                     <img src="/img/codemash-icon.png" width="30px"/>
                 </a>
+                <p class="navbar-text navbar-left">{{>loginButtons}}</p>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="{{pathFor route='home'}}">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    <li><a href="{{pathFor route='home'}}">Home</a></li>
                     <li><a href="{{pathFor route='schedule'}}">Schedule</a></li>
                     <li><a href="{{pathFor route='checkin'}}">Check In</a></li>
                     <li><a href="{{pathFor route='message'}}">Messages</a></li>
