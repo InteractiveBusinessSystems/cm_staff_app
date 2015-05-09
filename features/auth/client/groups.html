@@ -1,8 +1,9 @@
 <template name="groups">
+    <h2>Groups</h2>
     <ul>
       {{#each groupList}}
           <li>
-              <a href="/group/{{.}}">{{.}}</a>
+              <a href="{{pathFor 'group' groupName=.}}">{{.}}</a>
           </li>
       {{/each}}
     </ul>

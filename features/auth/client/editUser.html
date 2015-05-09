@@ -1,0 +1,13 @@
+<template name="editUser">
+    {{#with user}}
+        <form id="edit-user-form">
+            Email: {{emails.[0].address}}<br/>
+            admin: <input name="isAdmin" type="checkbox" checked="{{isAdmin .}}"/><br/>
+            First Name: <input name="firstName" type="text" value="{{profile.firstName}}"
+                               placeholder="First Name..."/><br/>
+            Last Name: <input name="lastName" type="text" value="{{profile.lastName}}" placeholder="Last Name..."/><br/>
+            <button type="submit">Save</button>
+        </form>
+    {{/with}}
+    <div><a href="{{pathFor 'listUsers'}}">Back to users</a></div>
+</template>
