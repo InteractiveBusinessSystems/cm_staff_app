@@ -55,20 +55,20 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{pathFor route='home'}}">Home</a></li>
-                    <li><a href="{{pathFor route='schedule'}}">Schedule</a></li>
-                    <li><a href="{{pathFor route='checkin'}}">Check In</a></li>
-                    <li><a href="{{pathFor route='message'}}">Messages</a></li>
-                    <li><a href="{{pathFor route='account'}}">Account</a></li>
+                    <li><a href="{{pathFor route='home'}}" data-toggle="collapse" data-target=".navbar-collapse">Home</a></li>
+                    <li><a href="{{pathFor route='schedule'}}" data-toggle="collapse" data-target=".navbar-collapse">Schedule</a></li>
+                    <li><a href="{{pathFor route='checkin'}}" data-toggle="collapse" data-target=".navbar-collapse">Check In</a></li>
+                    <li><a href="{{pathFor route='message'}}" data-toggle="collapse" data-target=".navbar-collapse">Messages</a></li>
+                    <li><a href="{{pathFor route='account'}}" data-toggle="collapse" data-target=".navbar-collapse">Account</a></li>
                 {{#if currentUser.role = 'admin'}}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{pathFor route='groups'}}">Groups</a></li>
-                            <li><a href="#">Users</a></li>
-                            <li><a href="#">Schedules</a></li>
+                            <li><a href="{{pathFor route='groups'}}" data-toggle="collapse" data-target=".navbar-collapse">Groups</a></li>
+                            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Users</a></li>
+                            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Schedules</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Sample</a></li>
+                            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Sample</a></li>
                         </ul>
                     </li>
                 {{/if}}

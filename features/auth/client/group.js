@@ -7,6 +7,9 @@ Template.group.helpers({
     },
     email: function(user) {
         return user.emails[0].address;
+    },
+    groupName: function(){
+        return Router.current().params.groupName;
     }
 });
 
@@ -20,4 +23,5 @@ Template.group.events({
         Groups.RemoveUserFromGroup(this._id, Router.current().params.groupName);
         return false;
     }
-})
+});
+

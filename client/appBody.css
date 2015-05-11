@@ -2,6 +2,7 @@
      background-color: #0C84A9;
      color: #fff;
     padding: 5px 3%;
+    min-height: 500px;
  }
 .app-container a:link, .app-container a:visited{
     color: #b6dd5e;
