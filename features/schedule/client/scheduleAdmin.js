@@ -2,10 +2,12 @@
  * Created by szischerk on 5/12/2015.
  */
 
+Meteor.call("getSchedule", function(err, data) {
+    Session.set('sessionList', data);
+});
+
 Template.scheduleAdmin.helpers ({
     "sessionList": function(){
-        var result =  Meteor.call("getSchedule");
-        debugger;
-        return result;
+        return Session.get('sessionList');
     }
 });
