@@ -4,6 +4,15 @@
     padding: 5px 3%;
     min-height: 500px;
  }
+
+.app-container input{
+    color: #0C84A9;
+}
+
+.app-container button{
+    color: #0C84A9;
+}
+
 .app-container a:link, .app-container a:visited{
     color: #b6dd5e;
 }
