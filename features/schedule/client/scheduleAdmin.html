@@ -28,13 +28,19 @@
                         <h4 class="modal-title" style="color: black" id="myModalLabel">{{Title}}</h4>
                     </div>
                     <div class="modal-body" style="color: black">
-                        <input type="hidden" id="currentCardId" value="{{Id}}"/>
-                        {{#each volunteerList}}
-                            <div>
-                                {{emails.[0].address}}
-
-                            </div>
+                        {{#each assignees}}
+                            {{#with getUser . }}
+                                <div>
+                                    {{emails.[0].address}}
+                                </div>
+                            {{/with}}
                         {{/each}}
+                        <select id="newVolunteer">
+                            <option value="0">Add Volunteer...</option>
+                            {{#each volunteerList}}
+                                <option value="{{_id}}">{{emails.[0].address}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -31,11 +31,15 @@ Template.scheduleAdmin.helpers({
         return dates;
     },
     "volunteerList": function () {
-        return Meteor.users.find({"groups": "Volunteers"});
+        _modalDep.depend();
+        return Meteor.users.find({"groups": "Volunteers", "_id": {$nin: _currentSelectedSession.assignees}});
     },
     "modalData": function() {
         _modalDep.depend();
         return _currentSelectedSession;
+    },
+    "getUser": function(id) {
+        return Meteor.users.findOne({_id: id});
     }
 });
 
@@ -57,9 +61,18 @@ Template.scheduleAdmin.events({
 
     },
     "click #saveAssigneeButton": function () {
-        var id = $("#currentCardId").val();
-        alert("Save: " + id);
+        var id = this.Id;
+
         $("#myModal").modal('hide')
+    },
+    "change #newVolunteer": function(evnt) {
+        var id = $(evnt.target).val();
+        if(id == "0")
+            return;
+
+        _currentSelectedSession.assignees.push(id);
+
+        _modalDep.changed();
     }
 });
 
