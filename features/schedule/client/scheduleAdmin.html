@@ -1,11 +1,12 @@
 <template name="scheduleAdmin">
     <a href="javascript:void(0);" id="scheduleRefresh">Refresh</a>
+
     <h2>Schedule Admin</h2>
 
     <div>
         {{#each dateList}}
             <div class="datePicker">
-                {{this}}
+                {{.}}
             </div>
         {{/each}}
     </div>
@@ -16,19 +17,37 @@
             {{>scheduleAdminRoom}}
         </div>
     {{/each}}
-
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="color: black" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <input type="hidden" id="currentCardId"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" style="color: white;">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="scheduleAdminRoom">
-
-    {{#each this}}
-        <div class="sessionRoom">{{Rooms}}</div>
-        {{>scheduleAdminSession}}
-    {{/each}}
+    <div class="sessionRoom">{{this.[0].Rooms}}</div>
+    <div style="height: 620px; background-color: gray">
+        {{#each .}}
+            {{>scheduleAdminSession}}
+        {{/each}}
+    </div>
 </template>
 
 <template name="scheduleAdminSession">
-    <div class="scheduleAdminSession" style="top:{{getTop SessionStartTime}}; height:{{getHeight SessionStartTime SessionEndTime}}">
+    <div class="scheduleAdminSession {{ getCardState . }}"
+         style="top:{{getTop SessionStartTime}}; height:{{getHeight SessionStartTime SessionEndTime}}">
         <div class="sessionTitle">{{Title}}</div>
     </div>
 </template>

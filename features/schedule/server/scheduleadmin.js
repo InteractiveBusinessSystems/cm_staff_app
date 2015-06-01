@@ -15,6 +15,7 @@ Meteor.methods({
             });
 
             _.map(sessions, function(session){
+                session.assignees = session.assignees || [];
                 if(SessionList.findOne({'Id':session.Id })) {
                     SessionList.update({'Id':session.Id }, session);
                 }

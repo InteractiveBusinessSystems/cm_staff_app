@@ -30,8 +30,17 @@ Template.scheduleAdmin.events({
         Session.set('selectedScheduleDate', this.toString());
     },
 
-    'click .scheduleAdminSession': function(){
-        alert(this.Title);
+    'click .scheduleAdminSession': function(item){
+        debugger;
+        $("#myModalLabel").text(this.Title);
+        $("#currentCardId").val(this.Id);
+        $('#myModal').modal();
+    }
+});
+
+Template.scheduleAdminSession.helpers({
+    "getCardState": function(item) {
+        return "";
     }
 });
 
