@@ -31,16 +31,19 @@ Template.scheduleAdmin.events({
     },
 
     'click .scheduleAdminSession': function(item){
-        debugger;
         $("#myModalLabel").text(this.Title);
         $("#currentCardId").val(this.Id);
-        $('#myModal').modal();
+        $("#myModal").modal();
     }
 });
 
 Template.scheduleAdminSession.helpers({
     "getCardState": function(item) {
-        return "";
+        var cls = "";
+        if(item.assignees.length > 0) {
+            return "ok";
+        }
+        return cls;
     }
 });
 
