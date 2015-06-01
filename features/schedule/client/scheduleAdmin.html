@@ -1,9 +1,34 @@
 <template name="scheduleAdmin">
-
+    <a href="javascript:void(0);" id="scheduleRefresh">Refresh</a>
     <h2>Schedule Admin</h2>
-    <ul>
+
+    <div>
+        {{#each dateList}}
+            <div class="datePicker">
+                {{this}}
+            </div>
+        {{/each}}
+    </div>
+
+    <div style="clear: both"></div>
     {{#each sessionList}}
-        <li>{{Title}}</li>
+        <div class="scheduleAdminRoom">
+            {{>scheduleAdminRoom}}
+        </div>
     {{/each}}
-    </ul>
+
+</template>
+
+<template name="scheduleAdminRoom">
+
+    {{#each this}}
+        <div class="sessionRoom">{{Rooms}}</div>
+        {{>scheduleAdminSession}}
+    {{/each}}
+</template>
+
+<template name="scheduleAdminSession">
+    <div class="scheduleAdminSession" style="top:{{getTop SessionStartTime}}; height:{{getHeight SessionStartTime SessionEndTime}}">
+        <div class="sessionTitle">{{Title}}</div>
+    </div>
 </template>
