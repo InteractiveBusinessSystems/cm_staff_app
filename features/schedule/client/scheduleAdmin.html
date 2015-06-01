@@ -17,23 +17,35 @@
             {{>scheduleAdminRoom}}
         </div>
     {{/each}}
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" style="color: black" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body" style="color: black">
-                    <input type="hidden" id="currentCardId"/>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" style="color: white;">Save changes</button>
+    {{#with modalData}}
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style="color: black" id="myModalLabel">{{Title}}</h4>
+                    </div>
+                    <div class="modal-body" style="color: black">
+                        <input type="hidden" id="currentCardId" value="{{Id}}"/>
+                        {{#each volunteerList}}
+                            <div>
+                                {{emails.[0].address}}
+
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveAssigneeButton" style="color: white;">Save
+                            changes
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/with}}
 </template>
 
 <template name="scheduleAdminRoom">
