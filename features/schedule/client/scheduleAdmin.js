@@ -62,7 +62,7 @@ Template.scheduleAdmin.events({
     },
     "click #saveAssigneeButton": function () {
         var id = this.Id;
-
+        Meteor.call("saveAssignees", id, this.assignees);
         $("#myModal").modal('hide')
     },
     "change #newVolunteer": function(evnt) {
