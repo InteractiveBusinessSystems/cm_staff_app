@@ -4,6 +4,7 @@ accounts-ui@1.1.5
 accounts-ui-unstyled@1.1.7
 autoupdate@1.2.1
 base64@1.0.3
+benmgreene:moment-range@1.0.7
 binary-heap@1.0.3
 blaze@2.1.2
 blaze-tools@1.0.3

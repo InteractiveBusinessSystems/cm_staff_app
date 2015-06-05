@@ -1,7 +1,7 @@
 <template name="scheduleAdmin">
     <a href="javascript:void(0);" id="scheduleRefresh">Refresh</a> -
     <a href="javascript:void(0);" id="scheduleVerify">Verify</a> -
-    <a href="javascript:void(0);" id="scheduleVerify">Autofill Leftovers</a>
+    <a href="javascript:void(0);" id="scheduleAutofill">Autofill Leftovers</a>
 
     <h2>Schedule Admin</h2>
 
@@ -33,7 +33,7 @@
                         {{#each assignees}}
                             {{#with getUser . }}
                                 <div>
-                                    {{emails.[0].address}}
+                                    {{emails.[0].address}} - <a href="#" class="removeVolunteer">remove</a>
                                 </div>
                             {{/with}}
                         {{/each}}
