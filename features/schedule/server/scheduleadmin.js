@@ -32,6 +32,9 @@ Meteor.methods({
         },
         saveAssignees: function (id, assignees) {
             SessionList.update({Id: id}, {$set: {assignees: assignees}})
+        },
+        verifyScheduleIntegrity: function() {
+
         }
     }
 );
