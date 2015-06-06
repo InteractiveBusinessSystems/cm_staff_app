@@ -1,6 +1,12 @@
 SessionList = new Meteor.Collection('session');
 Meteor.subscribe('sessionList');
 
+SessionCollisions = new Meteor.Collection('sessionCollision');
+Meteor.subscribe('sessionCollisions');
+
+SessionDates = new Meteor.Collection("sessionDates");
+Meteor.subscribe('sessionDates');
+
 var _modalDep = new Deps.Dependency;
 var _currentSelectedSession = {};
 
@@ -19,15 +25,18 @@ Template.scheduleAdmin.helpers({
         return sessionsGrouped;
     },
     "dateList": function () {
-        var data = SessionList.find().fetch();
-        var distinctData = _.uniq(data, false, function (d) {
-            return new Date(d.SessionStartTime).toDateString()
+
+        var distinctData = _.sortBy(SessionDates.find().fetch(), function(val){
+            return moment(val.date).diff(moment("01-01-2000"))
         });
+
         var dates = _.map(distinctData, function (item) {
-            return moment(item.SessionStartTime).format('M-D-YY');
+            return moment(item.date).format('M-D-YY');
         });
-        if (dates.length > 0)
+
+        if (typeof(Session.get('selectedScheduleDate')) === "undefined" && dates.length > 0) {
             Session.set('selectedScheduleDate', dates[0]);
+        }
         return dates;
     },
     "volunteerList": function () {
@@ -43,6 +52,16 @@ Template.scheduleAdmin.helpers({
     },
     "getUser": function (id) {
         return Meteor.users.findOne({_id: id});
+    },
+    "collisionList": function (id) {
+        _modalDep.depend();
+        return SessionCollisions.find({origSession: id});
+    },
+    "getCollisionData": function (sessionId, userId) {
+        return {
+            session: SessionList.findOne({_id: sessionId}),
+            user: Meteor.users.findOne({_id: userId})
+        }
     }
 });
 
@@ -84,7 +103,9 @@ Template.scheduleAdmin.events({
     },
     "click .removeVolunteer": function (evnt) {
         var _id = this._id;
-        _currentSelectedSession.assignees = _currentSelectedSession.assignees.filter(function (val) {return val != _id} );
+        _currentSelectedSession.assignees = _currentSelectedSession.assignees.filter(function (val) {
+            return val != _id
+        });
         _modalDep.changed();
     }
 });
@@ -92,7 +113,13 @@ Template.scheduleAdmin.events({
 Template.scheduleAdminSession.helpers({
     "getCardState": function (item) {
         var cls = "";
-        if (item.assignees.length > 0) {
+
+        var collisions = SessionCollisions.find({origSession: item._id}).fetch();
+
+        if (collisions.length > 0) {
+            return "error";
+        }
+        else if (item.assignees.length > 0) {
             return "ok";
         }
         return cls;

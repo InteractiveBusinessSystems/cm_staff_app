@@ -30,6 +30,13 @@
                         <h4 class="modal-title" style="color: black" id="myModalLabel">{{Title}}</h4>
                     </div>
                     <div class="modal-body" style="color: black">
+                        {{#each collisionList _id }}
+                            <div class="session-error">
+                                {{#with getCollisionData secSession userId }}
+                                    User {{user.emails.[0].address }} is colliding with "{{session.Title}}"
+                                {{/with}}
+                            </div>
+                        {{/each}}
                         {{#each assignees}}
                             {{#with getUser . }}
                                 <div>

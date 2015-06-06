@@ -89,3 +89,8 @@ Import Fonts
     font-weight: 700;
     font-style: normal;
 }
+
+.session-error {
+    color: red;
+    font-size: small;
+}
