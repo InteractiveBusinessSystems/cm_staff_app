@@ -1,0 +1,21 @@
+<template name="schedule">
+    <h3>My Schedule</h3>
+    <div>
+        {{#each mySchedule}}
+            <div class="scheduleDateHeader">
+                {{dateGroup .}}
+            </div>
+            {{>scheduleByDate}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="scheduleByDate">
+
+    {{#each .}}
+        <div class="scheduleSession">
+            <div class="scheduleTime">{{formatToTime SessionStartTime}} - {{formatToTime SessionEndTime}}</div>
+            <div class="scheduleTitle">{{Title}}</div>
+        </div>
+    {{/each}}
+</template>

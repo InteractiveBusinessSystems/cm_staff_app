@@ -10,4 +10,5 @@ Router.map(function () {
     this.route('listUsers', {path: '/users'});
     this.route('editUser', {path: '/user/:_id'});
     this.route('scheduleAdmin', {path: '/admin/schedule'});
+    this.route('schedule', {path: '/schedule'});
 });

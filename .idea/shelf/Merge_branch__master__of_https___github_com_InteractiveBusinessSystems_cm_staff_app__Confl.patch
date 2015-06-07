@@ -1,0 +1,34 @@
+Index: features/schedule/client/scheduleAdmin.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- features/schedule/client/scheduleAdmin.html	(date 1433523434000)
++++ features/schedule/client/scheduleAdmin.html	(revision )
+@@ -1,5 +1,7 @@
+ <template name="scheduleAdmin">
+-    <a href="javascript:void(0);" id="scheduleRefresh">Refresh</a>
++    <a href="javascript:void(0);" id="scheduleRefresh">Refresh</a> -
++    <a href="javascript:void(0);" id="scheduleVerify">Verify</a> -
++    <a href="javascript:void(0);" id="scheduleVerify">Autofill Leftovers</a>
+ 
+     <h2>Schedule Admin</h2>
+ 
+\ No newline at end of file
+Index: features/schedule/server/scheduleadmin.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- features/schedule/server/scheduleadmin.js	(date 1433523434000)
++++ features/schedule/server/scheduleadmin.js	(revision )
+@@ -32,6 +32,9 @@
+         },
+         saveAssignees: function (id, assignees) {
+             SessionList.update({Id: id}, {$set: {assignees: assignees}})
++        },
++        verifyScheduleIntegrity: function() {
++
+         }
+     }
+ );
