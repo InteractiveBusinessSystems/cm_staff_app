@@ -32,6 +32,10 @@ Meteor.methods({
         },
         saveAssignees: function (id, assignees) {
             SessionList.update({Id: id}, {$set: {assignees: assignees}})
+        },
+        verifySchedule: function () {
+            this.unblock();
+            var users = Meteor.users.find({groups: "Volunteers"}).fetch();
         }
     }
 );

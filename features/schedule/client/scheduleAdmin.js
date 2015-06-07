@@ -32,13 +32,16 @@ Template.scheduleAdmin.helpers({
     },
     "volunteerList": function () {
         _modalDep.depend();
-        return Meteor.users.find({"groups": "Volunteers", "_id": {$nin: _currentSelectedSession.assignees}});
+        if (typeof(_currentSelectedSession.assignees) !== "undefined")
+            return Meteor.users.find({"groups": "Volunteers", "_id": {$nin: _currentSelectedSession.assignees}});
+        else
+            return [];
     },
-    "modalData": function() {
+    "modalData": function () {
         _modalDep.depend();
         return _currentSelectedSession;
     },
-    "getUser": function(id) {
+    "getUser": function (id) {
         return Meteor.users.findOne({_id: id});
     }
 });
@@ -47,6 +50,11 @@ Template.scheduleAdmin.events({
     'click #scheduleRefresh': function () {
         Meteor.call('refreshSchedule', function (err, data) {
             alert('Refreshed Schedule');
+        });
+    },
+
+    'click #scheduleVerify': function () {
+        Meteor.call('verifySchedule', function (err, data) {
         });
     },
 
@@ -65,13 +73,20 @@ Template.scheduleAdmin.events({
         Meteor.call("saveAssignees", id, this.assignees);
         $("#myModal").modal('hide')
     },
-    "change #newVolunteer": function(evnt) {
+    "change #newVolunteer": function (evnt) {
         var id = $(evnt.target).val();
-        if(id == "0")
+        if (id == "0")
             return;
 
         _currentSelectedSession.assignees.push(id);
 
+        _modalDep.changed();
+    },
+    "click .removeVolunteer": function (evnt) {
+        var _id = this._id;
+        _currentSelectedSession.assignees = _currentSelectedSession.assignees.filter(function (val) {
+            return val != _id
+        });
         _modalDep.changed();
     }
 });
