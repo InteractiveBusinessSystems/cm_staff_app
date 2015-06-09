@@ -1,6 +1,19 @@
 SessionList = new Meteor.Collection('session');
+
+SessionCollisions = new Meteor.Collection('sessionCollision');
+
+SessionDates = new Meteor.Collection("sessionDates");
+
 Meteor.publish('sessionList', function () {
     return SessionList.find();
+});
+
+Meteor.publish('sessionCollisions', function () {
+    return SessionCollisions.find();
+});
+
+Meteor.publish('sessionDates', function () {
+    return SessionDates.find();
 });
 
 Meteor.methods({
