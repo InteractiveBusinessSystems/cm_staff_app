@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .idea/
 =======
 # Created by .ignore support plugin (hsz.mobi)
@@ -35,8 +34,3 @@ node_modules
 ### Meteor template
 .meteor/local
 .meteor/meteorite
-
-.idea
-
-
->>>>>>> d4a4e7425533e1846ec98c46320dfc024e531d42
