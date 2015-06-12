@@ -1,8 +1,8 @@
 <template name="checkinsession">
     {{#each sessionInfo}}
-        <div>{{Title}}</div>
+        <div>{{Title}} - {{sessionStatus}}</div>
+        Speaker(s):
         {{#each Speakers}}
-            Speaker(s):
             <div>{{LastName}}, {{FirstName}}</div>
         {{/each}}
         <div>{{formatToTime SessionStartTime}} - {{formatToTime SessionEndTime}}</div>
