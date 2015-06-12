@@ -33,6 +33,15 @@ Meteor.methods({
                     }
                     else {
                         session.assignees = [];
+                        session.checkInInfo = {
+                            proctorCheckInTime:'',
+                            sessionStartTime:'',
+                            sessionEndTime:'',
+                            proctor:'',
+                            attendees10: 0,
+                            attendees50: 0,
+                            notes:''
+                        };
                         SessionList.insert(session);
                     }
                 });
@@ -52,15 +61,6 @@ Meteor.methods({
                 // Got a network error, time-out or HTTP error in the 400 or 500 range.
                 return '';
             }
-        },
-        getAvailableDates: function () {
-            var distinctData = _.sortBy(SessionDates.find().fetch(), function(val){
-                return moment(val.date).diff(moment("01-01-2000"))
-            });
-
-            return _.map(distinctData, function (item) {
-                return moment(item.date).format('M-D-YY');
-            });
         },
         saveAssignees: function (id, assignees) {
             SessionList.update({Id: id}, {$set: {assignees: assignees}})
@@ -95,6 +95,10 @@ Meteor.methods({
             _.forEach(newColList, function(coll) {
                 SessionCollisions.insert(coll);
             });
+        }
+        ,
+        saveCheckInInfo: function(id, checkInInfo){
+            SessionList.update({Id: id},{$set: {checkInInfo: checkInInfo}})
         }
     }
 );
