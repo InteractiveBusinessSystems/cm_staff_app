@@ -1,27 +1,9 @@
-SessionList = new Meteor.Collection('session');
-
-SessionCollisions = new Meteor.Collection('sessionCollision');
-
-SessionDates = new Meteor.Collection("sessionDates");
-
-Meteor.publish('sessionList', function () {
-    return SessionList.find();
-});
-
-Meteor.publish('sessionCollisions', function () {
-    return SessionCollisions.find();
-});
-
-Meteor.publish('sessionDates', function () {
-    return SessionDates.find();
-});
-
 Meteor.methods({
         refreshSchedule: function () {
             this.unblock();
             try {
                 var result = HTTP.get("https://cmprod-speakers.azurewebsites.net/api/sessionsdata");
-                //var result = HTTP.get("http://localhost:3000/public/data/sessionsdata.xml");
+                //var result = HTTP.get("http://localhost:3000/data/sessionsdata.xml");
                 var sessions = result.data.filter(function (item) {
                     return item.SessionType === "Pre-Compiler" ||
                         item.SessionType === "Regular Session";

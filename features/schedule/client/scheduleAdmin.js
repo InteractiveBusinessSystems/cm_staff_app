@@ -1,11 +1,3 @@
-SessionList = new Meteor.Collection('session');
-Meteor.subscribe('sessionList');
-
-SessionCollisions = new Meteor.Collection('sessionCollision');
-Meteor.subscribe('sessionCollisions');
-
-SessionDates = new Meteor.Collection("sessionDates");
-Meteor.subscribe('sessionDates');
 
 var _modalDep = new Deps.Dependency;
 var _currentSelectedSession = {};
