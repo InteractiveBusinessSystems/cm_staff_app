@@ -104,10 +104,9 @@ Meteor.methods({
             _.forEach(newColList, function(coll) {
                 SessionCollisions.insert(coll);
             });
-        }
-        ,
+        },
         saveCheckInInfo: function(id, checkInInfo){
-            SessionList.update({Id: id},{$set: {checkInInfo: checkInInfo}})
+            SessionList.update({_id: id},{$set: {checkInInfo: checkInInfo}})
         }
     }
 );
