@@ -1,0 +1,12 @@
+<template name="checkinsession">
+    {{#each sessionInfo}}
+        <div>{{Title}}</div>
+        {{#each Speakers}}
+            Speaker(s):
+            <div>{{LastName}}, {{FirstName}}</div>
+        {{/each}}
+        <div>{{formatToTime SessionStartTime}} - {{formatToTime SessionEndTime}}</div>
+        <div>Room: {{Rooms}}</div>
+            <input id="startTimeBtn" type="button" value="Start"/><span id="startTime">{{formatToTime checkInInfo.sessionStartTime}}</span>
+    {{/each}}
+</template>

@@ -33,6 +33,15 @@ Meteor.methods({
                     }
                     else {
                         session.assignees = [];
+                        session.checkInInfo = {
+                            proctorCheckInTime:'',
+                            sessionStartTime:'',
+                            sessionEndTime:'',
+                            proctor:'',
+                            attendees10: 0,
+                            attendees50: 0,
+                            notes:''
+                        };
                         SessionList.insert(session);
                     }
                 });
@@ -95,6 +104,10 @@ Meteor.methods({
             _.forEach(newColList, function(coll) {
                 SessionCollisions.insert(coll);
             });
+        }
+        ,
+        saveCheckInInfo: function(id, checkInInfo){
+            SessionList.update({Id: id},{$set: {checkInInfo: checkInInfo}})
         }
     }
 );
