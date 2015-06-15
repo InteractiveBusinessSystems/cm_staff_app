@@ -10,6 +10,7 @@
 
 // Utilities
 
+
 // @import "bootstrap\less\mixins\hide-text.less"
 // CSS image replacement
 //
@@ -33,6 +34,8 @@
   .hide-text();
 }
 
+
+
 // @import "bootstrap\less\mixins\opacity.less"
 // Opacity
 
@@ -42,6 +45,8 @@
   @opacity-ie: (@opacity * 100);
   filter: ~"alpha(opacity=@{opacity-ie})";
 }
+
+
 
 // @import "bootstrap\less\mixins\image.less"
 // Image Mixins
@@ -78,6 +83,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\labels.less"
 // Labels
 
@@ -92,6 +99,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\reset-filter.less"
 // Reset filters for IE
 //
@@ -102,6 +111,8 @@
   filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
 }
 
+
+
 // @import "bootstrap\less\mixins\resize.less"
 // Resize anything
 
@@ -109,6 +120,8 @@
   resize: @direction; // Options: horizontal, vertical, both
   overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
 }
+
+
 
 // @import "bootstrap\less\mixins\responsive-visibility.less"
 // Responsive utilities
@@ -127,6 +140,8 @@
   display: none !important;
 }
 
+
+
 // @import "bootstrap\less\mixins\size.less"
 // Sizing shortcuts
 
@@ -139,6 +154,8 @@
   .size(@size; @size);
 }
 
+
+
 // @import "bootstrap\less\mixins\tab-focus.less"
 // WebKit-style focus
 
@@ -150,6 +167,8 @@
   outline-offset: -2px;
 }
 
+
+
 // @import "bootstrap\less\mixins\text-emphasis.less"
 // Typography
 
@@ -160,6 +179,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\text-overflow.less"
 // Text overflow
 // Requires inline-block or block for proper styling
@@ -169,6 +190,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+
 
 // @import "bootstrap\less\mixins\vendor-prefixes.less"
 // Vendor Prefixes
@@ -402,6 +425,7 @@
 
 // Components
 
+
 // @import "bootstrap\less\mixins\alerts.less"
 // Alerts
 
@@ -417,6 +441,8 @@
     color: darken(@text-color, 10%);
   }
 }
+
+
 
 // @import "bootstrap\less\mixins\buttons.less"
 // Button variants
@@ -472,6 +498,8 @@
   border-radius: @border-radius;
 }
 
+
+
 // @import "bootstrap\less\mixins\panels.less"
 // Panels
 
@@ -498,6 +526,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\pagination.less"
 // Pagination
 
@@ -522,6 +552,8 @@
     }
   }
 }
+
+
 
 // @import "bootstrap\less\mixins\list-group.less"
 // List Groups
@@ -554,6 +586,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\nav-divider.less"
 // Horizontal dividers
 //
@@ -565,6 +599,8 @@
   overflow: hidden;
   background-color: @color;
 }
+
+
 
 // @import "bootstrap\less\mixins\forms.less"
 // Form validation states
@@ -653,6 +689,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\progress-bar.less"
 // Progress bars
 
@@ -664,6 +702,8 @@
     #gradient > .striped();
   }
 }
+
+
 
 // @import "bootstrap\less\mixins\table-row.less"
 // Tables
@@ -698,6 +738,7 @@
 
 // Skins
 
+
 // @import "bootstrap\less\mixins\background-variant.less"
 // Contextual backgrounds
 
@@ -707,6 +748,8 @@
     background-color: darken(@color, 10%);
   }
 }
+
+
 
 // @import "bootstrap\less\mixins\border-radius.less"
 // Single side border-radius
@@ -727,6 +770,8 @@
   border-bottom-left-radius: @radius;
      border-top-left-radius: @radius;
 }
+
+
 
 // @import "bootstrap\less\mixins\gradients.less"
 // Gradients
@@ -792,6 +837,7 @@
 
 // Layout
 
+
 // @import "bootstrap\less\mixins\clearfix.less"
 // Clearfix
 //
@@ -816,6 +862,8 @@
   }
 }
 
+
+
 // @import "bootstrap\less\mixins\center-block.less"
 // Center-align a block level element
 
@@ -824,6 +872,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+
 
 // @import "bootstrap\less\mixins\nav-vertical-align.less"
 // Navbar vertical align
@@ -835,6 +885,8 @@
   margin-top: ((@navbar-height - @element-height) / 2);
   margin-bottom: ((@navbar-height - @element-height) / 2);
 }
+
+
 
 // @import "bootstrap\less\mixins\grid-framework.less"
 // Framework grid generation
@@ -928,6 +980,8 @@
   .loop-grid-columns(@grid-columns, @class, push);
   .loop-grid-columns(@grid-columns, @class, offset);
 }
+
+
 
 // @import "bootstrap\less\mixins\grid.less"
 // Grid system

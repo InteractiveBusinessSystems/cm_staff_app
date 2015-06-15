@@ -1,5 +1,9 @@
 # CodeMash Staff Application #
 
+Requires:
+[Meteor.js](https://www.meteor.com/install)
+
+
 ### Technologies: ###
 * Meteor
 * Node.js
