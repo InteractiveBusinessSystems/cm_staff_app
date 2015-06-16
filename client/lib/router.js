@@ -13,6 +13,6 @@ Router.map(function () {
     this.route('schedule', {path: '/schedule'});
     this.route('checkin', {path: '/checkin'});
     this.route('checkinsession', {path: '/checkin/:sessionId'});
-    this.route('message', {path: '/message'});
+    this.route('messages', {path: '/messages'});
     this.route('account', {path: '/account'});
 });
