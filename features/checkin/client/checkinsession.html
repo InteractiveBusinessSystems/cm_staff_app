@@ -1,12 +1,51 @@
 <template name="checkinsession">
     {{#each sessionInfo}}
-        <div>{{Title}} - {{sessionStatus}}</div>
-        Speaker(s):
-        {{#each Speakers}}
-            <div>{{LastName}}, {{FirstName}}</div>
-        {{/each}}
-        <div>{{formatToTime SessionStartTime}} - {{formatToTime SessionEndTime}}</div>
-        <div>Room: {{Rooms}}</div>
-            <input id="startTimeBtn" type="button" value="Start"/><span id="startTime">{{formatToTime checkInInfo.sessionStartTime}}</span>
+        <div class="sessionStatusContainer">
+            <div id="checkInBtn" class="checkInBtn" style="background-color: {{checkInStatusColor}}">Check<br/>In</div>
+            <div class="statusTextTitle">Status</div>
+            <div class="statusText">{{sessionStatus}}</div>
+        </div>
+
+        <div class="sessionStatusContainer">
+            <div id="startTime" class="checkInBtn" style="background-color: {{startTimeStatusColor}}">Session<br/>Start</div>
+            <div class="statusTextTitle">Start Time</div>
+            <div class="statusText">{{formatToTime checkInInfo.sessionStartTime}}</div>
+        </div>
+
+        <div class="sessionStatusContainer">
+            <div id="endTime" class="checkInBtn" style="background-color: {{endTimeStatusColor}}">Session<br/>End</div>
+            <div class="statusTextTitle">End Time</div>
+            <div class="statusText">{{formatToTime checkInInfo.sessionEndTime}}</div>
+        </div>
+
+        <div style="clear: both">
+
+            <div class="sessionStatusContainer">
+                <div id="endTime" class="attendanceBubble">{{checkInInfo.attendees10}}</div>
+                <div class="statusTextTitle">10 Minute</div>
+            </div>
+
+            <div class="sessionStatusContainer">
+                <div id="endTime" class="attendanceBubble">{{checkInInfo.attendees50}}</div>
+                <div class="statusTextTitle">50 Minute</div>
+            </div>
+
+        </div>
+
+
+
+        <div class="sessionInfo">
+            <div class="schedule-session-title">{{Title}}</div>
+            <div class="schedule-session-heading">Speaker(s):</div>
+            {{#each Speakers}}
+                <div class="schedule-speaker-room">{{FirstName}} {{LastName}}</div>
+            {{/each}}
+            <div class="schedule-session-heading">Time:</div>
+            <div class="schedule-speaker-room">{{formatToTime SessionStartTime}} - {{formatToTime SessionEndTime}}</div>
+            <div class="schedule-session-heading">Room:</div>
+            <div class="schedule-speaker-room">{{Rooms}}</div>
+            <div class="schedule-session-heading">Description:</div>
+            <div class="schedule-session-description">{{Abstract}}</div>
+        </div>
     {{/each}}
 </template>

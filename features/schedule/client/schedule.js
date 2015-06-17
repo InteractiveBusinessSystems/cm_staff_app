@@ -15,14 +15,12 @@ Template.schedule.helpers({
         return _.toArray(
                         _.groupBy(
                             _.sortBy(sessionsForCurrentUser, function(session){
-                                debugger;
                                 return moment(session.SessionStartTime).format('YYDDMMHHMM');
                             }
                             ), function(session){ return moment(session.SessionStartTime).format('M-D-YY'); })
                             );
     },
     dateGroup:function(session){
-        debugger;
         return moment(session[0].SessionStartTime).format('dddd, MMMM Do YYYY');
     }
 });

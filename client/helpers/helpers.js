@@ -1,5 +1,7 @@
 Template.registerHelper('formatToTime', function (dateTime) {
-    return moment(dateTime).format('h:mma');
+    var formattedTime = moment(dateTime).format('h:mma');
+    if (formattedTime == 'Invalid date') return '';
+    return formattedTime;
 });
 
 Template.registerHelper("arrayJoin", function (arr) {
