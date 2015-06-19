@@ -10,6 +10,8 @@ Router.map(function () {
     this.route('listUsers', {path: '/users'});
     this.route('editUser', {path: '/user/:_id'});
     this.route('scheduleAdmin', {path: '/admin/schedule'});
+    this.route("staticAdmin", {path: '/admin/static'});
+    this.route("staticAdminEdit", {path: '/admin/static/:_id'});
     this.route('schedule', {path: '/schedule'});
     this.route('checkin', {path: '/checkin'});
     this.route('checkinsession', {path: '/checkin/:sessionId'});

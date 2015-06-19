@@ -1,0 +1,3 @@
+function clearObject(obj) {
+
+}
