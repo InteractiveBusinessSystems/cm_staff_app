@@ -109,8 +109,8 @@ Template.checkinsession.events({
         Meteor.call('saveCheckInInfo', this._id, this.checkInInfo);
         _modalDep.changed();
     },
-    'focusout #notes': function(e){
-        this.checkInInfo.notes = $('#notes').text();
+    'blur #notes': function(e){
+        this.checkInInfo.notes = $('#notes').val().trim();
         Meteor.call('saveCheckInInfo', this._id, this.checkInInfo);
     }
 });
