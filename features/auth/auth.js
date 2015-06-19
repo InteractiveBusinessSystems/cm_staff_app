@@ -24,7 +24,7 @@ if (Meteor.isServer) {
     Accounts.onCreateUser(function (options, user) {
         user.profile = options.profile;
         user.role = options.role || "user";
-        user.groups = [];
+        user.groups = ['Everyone'];
         return user;
     });
 

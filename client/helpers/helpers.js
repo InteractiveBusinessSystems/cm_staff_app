@@ -15,3 +15,9 @@ Template.registerHelper("isAdmin", function (user) {
     var _user = user || Meteor.user();
     return _user.role == "admin";
 });
+
+String.prototype.padZero= function(len, c){
+    var s= this, c= c || '0';
+    while(s.length< len) s= c+ s;
+    return s;
+};
