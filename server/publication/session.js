@@ -9,3 +9,4 @@ Meteor.publish('sessionCollisions', function () {
 Meteor.publish('sessionDates', function () {
     return SessionDates.find();
 });
+

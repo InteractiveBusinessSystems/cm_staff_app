@@ -5,20 +5,27 @@
         Role: {{currentUser.role}}
     </div>
     <div>
-        <br />
-        <div id="messenger" role="main">
-        <div id="msgusergroupbox">
-        {{#each currentUser.groups}}
-            <ul>{{.}}</ul>
-        {{/each}}
+        <br/>
 
-        </div>
+        <div id="messenger" role="main">
+            <div id="msgusergroupbox">
+                {{#each currentUser.groups}}
+                    <ul>{{.}}</ul>
+                {{/each}}
+
+            </div>
             <div id="msgarea">
                 <div id="topmsgheader"></div>
-              <div id="bottommsgfooter">
-                  <button id="sendmsg">Send</button>
-                  <input type="text" id="msgtosend" />
-              </div>
+                <span style="color: black;">
+                    {{#each allmessages }}
+                      <div>{{message}}</div>
+                    {{/each}}
+                </span>
+
+                <div id="bottommsgfooter">
+                    <button id="sendmsg">Send</button>
+                    <input type="text" id="msgtosend"/>
+                </div>
             </div>
         </div>
     </div>
