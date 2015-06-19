@@ -31,7 +31,8 @@ if (Meteor.isServer) {
         CreateAccount: function (email) {
             var userId = Accounts.createUser({
                 email: email,
-                role: "user"
+                role: "user",
+                password: 'garden'
             });
             Meteor.call("SendEmail", userId);
         },
