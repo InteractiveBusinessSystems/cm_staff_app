@@ -33,21 +33,21 @@
                         {{#each collisionList _id }}
                             <div class="session-error">
                                 {{#with getCollisionData secSession userId }}
-                                    User {{user.emails.[0].address }} is colliding with "{{session.Title}}"
+                                    User {{user.profile.lastName}}, {{user.profile.firstName}} is colliding with "{{session.Title}}"
                                 {{/with}}
                             </div>
                         {{/each}}
                         {{#each assignees}}
                             {{#with getUser . }}
                                 <div>
-                                    {{emails.[0].address}} - <a href="#" class="removeVolunteer">remove</a>
+                                    {{profile.lastName}}, {{profile.firstName}} - <a href="#" class="removeVolunteer">remove</a>
                                 </div>
                             {{/with}}
                         {{/each}}
                         <select id="newVolunteer">
                             <option value="0">Add Volunteer...</option>
                             {{#each volunteerList}}
-                                <option value="{{_id}}">{{emails.[0].address}}</option>
+                                <option value="{{_id}}">{{profile.lastName}}, {{profile.firstName}}</option>
                             {{/each}}
                         </select>
                     </div>

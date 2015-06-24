@@ -8,12 +8,14 @@ Meteor.methods({
     SetUserRole: function (userId, role) {
         Meteor.users.update({_id: userId}, {$set: {role: role}});
     },
-    UpdateUser: function (userId, firstName, lastName) {
+    UpdateUser: function (userId, firstName, lastName, gravatar, cell) {
         Meteor.users.update({_id: userId}, {
             $set: {
                 "profile": {
                     firstName: firstName,
-                    lastName: lastName
+                    lastName: lastName,
+                    gravatar: gravatar,
+                    cell: cell
                 }
             }
         });

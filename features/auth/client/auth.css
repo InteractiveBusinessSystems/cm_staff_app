@@ -1,0 +1,26 @@
+.user-container{
+    clear: both;
+    /*border-top: solid 1px #ccc;*/
+    margin-top: 5px;
+}
+
+.user-gravatar{
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #333;
+    margin-bottom: 0px;
+    float: left;
+    height: 64px;
+    width: 64px;
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: #FFF;
+}
+
+.user-fullname, .user-cell{
+    font-size: 10pt;
+    color: #AAA;
+}
+
+.edit-user-form-textbox{
+    width:100%;
+}
