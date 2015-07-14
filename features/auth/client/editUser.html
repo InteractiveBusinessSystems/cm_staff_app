@@ -1,11 +1,23 @@
 <template name="editUser">
     {{#with user}}
         <form id="edit-user-form">
-            Email: {{emails.[0].address}}<br/>
-            admin: <input name="isAdmin" type="checkbox" checked="{{isAdmin .}}"/><br/>
-            First Name: <input name="firstName" type="text" value="{{profile.firstName}}"
-                               placeholder="First Name..."/><br/>
-            Last Name: <input name="lastName" type="text" value="{{profile.lastName}}" placeholder="Last Name..."/><br/>
+            <div class="edit-user-form-fieldname">Email:</div>{{emails.[0].address}}<br/>
+
+            Admin?:
+            <input name="isAdmin" type="checkbox" checked="{{isAdmin .}}"/><br/>
+
+            <div class="edit-user-form-fieldname">First Name:</div>
+            <input class="edit-user-form-textbox" name="firstName" type="text" value="{{profile.firstName}}" placeholder="First Name..."/><br/>
+
+            <div class="edit-user-form-fieldname">Last Name:</div>
+            <input class="edit-user-form-textbox" name="lastName" type="text" value="{{profile.lastName}}" placeholder="Last Name..."/><br/>
+
+            <div class="edit-user-form-fieldname">Gravatar:</div>
+            <input class="edit-user-form-textbox" name="gravatar" type="url" value="{{profile.gravatar}}" placeholder="Gravatar Url..."/><br/>
+
+            <div class="edit-user-form-fieldname">Cell:</div>
+            <input class="edit-user-form-textbox" name="cell" type="tel" value="{{profile.cell}}" placeholder="Cell Number..."/><br/>
+            <br/>
             <button type="submit">Save</button>
         </form>
     {{/with}}

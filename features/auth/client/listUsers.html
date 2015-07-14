@@ -4,12 +4,14 @@
         <input type="text" id="email" name="email" placeholder="email"/>
         <button type="submit" id="addUser">Add User</button>
     </form>
-    <ul>
-        {{#each userlist}}
-            <li>
-                {{emails.[0].address}}
-                <a href="{{pathFor 'editUser' _id=_id}}">Edit</a>
-            </li>
-        {{/each}}
-    </ul>
+    {{#each userlist}}
+        <a href="{{pathFor 'editUser' _id=_id}}">
+            <div class="user-container">
+                <img class="user-gravatar" src="{{#if profile.gravatar}}{{profile.gravatar}}{{else}}/img/codemash-icon.png{{/if}}"/>
+                <div class="user-email">{{emails.[0].address}}</div>
+                <div class="user-fullname">{{profile.lastName}}, {{profile.firstName}}</div>
+                <div class="user-cell">{{profile.cell}}</div>
+            </div>
+        </a>
+    {{/each}}
 </template>
