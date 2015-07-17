@@ -1,45 +1,5 @@
-#msgusergroupbox
+#BoxRowForMsg
 {
- display: inline-block;
-    background-image: -webkit-linear-gradient(top, #aaaaaa 0%, #777777 100%);
-    width: 200px;
-}
-#msgarea
-{
-    display: inline-block;
-    vertical-align: top;
-    background-color: white;
-    height: 294px;
-    width: 650px;
-}
-#bottommsgfooter
-{
-    background-image: -webkit-linear-gradient(top, #aaaaaa 0%, #777777 100%);
-    position: relative;
-    top: 207px;
-    height: 54px;
-}
-#topmsgheader
-{
-    background-image: -webkit-linear-gradient(top, #aaaaaa 0%, #777777 100%);
-    position: relative;
-    bottom: 0px;
-    height: 34px;
-}
+    background-color: gainsboro;
 
-#sendmsg
-{
-    position: relative;
-    top: 7.5px;
-    left: 7.5px;
-}
-
-#msgtosend
-{
-    width: 550px;
-    background-color: white;
-    height: 32px;
-    position: relative;
-    top: 7.5px;
-    left: 16.5px;
 }
