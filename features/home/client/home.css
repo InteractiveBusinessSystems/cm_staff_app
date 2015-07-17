@@ -1,0 +1,12 @@
+.checkInStatus{
+    font-size: 8pt;
+    height: 100px;
+    width: 100px;
+    float: left;
+    border: solid 1px #fff;
+    margin: 5px;
+}
+
+.checkedIn{
+    background-color: #3c763d;
+}

@@ -34,3 +34,4 @@ node_modules
 ### Meteor template
 .meteor/local
 .meteor/meteorite
+docs

@@ -1,13 +1,13 @@
 <template name="home">
-	<span>test</span>
 
-    <div>
-		Role: {{currentUser.role}}
-	</div>
-	<div>
-		Groups:
-		{{#each currentUser.groups}}
-			{{.}},
-		{{/each}}
-	</div>
+	<h2>Session Check In Status</h2>
+    {{nextSessionCheckIn.[0].SessionStartTime}}
+	{{#each nextSessionCheckIn}}
+        {{#if isCheckedIn .}}
+            <div class="checkInStatus checkedIn">{{Rooms}}</div>
+        {{else}}
+            <div class="checkInStatus">{{Rooms}}</div>
+        {{/if}}
+
+    {{/each}}
 </template>

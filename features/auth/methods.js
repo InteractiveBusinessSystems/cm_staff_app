@@ -8,6 +8,13 @@ Meteor.methods({
     SetUserRole: function (userId, role) {
         Meteor.users.update({_id: userId}, {$set: {role: role}});
     },
+    UpdateEmail: function(userId, email){
+        var emailObj = [{
+            address:email,
+            verified:false
+        }];
+        Meteor.users.update({_id: userId}, {$set: {emails: emailObj}});
+    },
     UpdateUser: function (userId, firstName, lastName, gravatar, cell) {
         Meteor.users.update({_id: userId}, {
             $set: {

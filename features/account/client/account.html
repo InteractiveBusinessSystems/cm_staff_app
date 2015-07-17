@@ -1,3 +1,23 @@
 <template name="account">
-    <h1>My Account</h1>
+    <h3>My Account</h3>
+    {{#with myAccount}}
+        <form id="edit-user-form">
+            <div class="edit-user-form-fieldname">Email:</div>
+            <input class="edit-user-form-textbox" name="email" type="text" value="{{emails.[0].address}}" placeholder="Email..."/><br/>
+
+            <div class="edit-user-form-fieldname">First Name:</div>
+            <input class="edit-user-form-textbox" name="firstName" type="text" value="{{profile.firstName}}" placeholder="First Name..."/><br/>
+
+            <div class="edit-user-form-fieldname">Last Name:</div>
+            <input class="edit-user-form-textbox" name="lastName" type="text" value="{{profile.lastName}}" placeholder="Last Name..."/><br/>
+
+            <div class="edit-user-form-fieldname">Gravatar:</div>
+            <input class="edit-user-form-textbox" name="gravatar" type="url" value="{{profile.gravatar}}" placeholder="Gravatar Url..."/><br/>
+
+            <div class="edit-user-form-fieldname">Cell:</div>
+            <input class="edit-user-form-textbox" name="cell" type="tel" value="{{profile.cell}}" placeholder="Cell Number..."/><br/>
+            <br/>
+            <button type="submit">Save</button>
+        </form>
+    {{/with}}
 </template>
