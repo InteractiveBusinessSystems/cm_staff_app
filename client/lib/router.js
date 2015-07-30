@@ -15,5 +15,6 @@ Router.map(function () {
     this.route('schedule', {path: '/schedule'});
     this.route('checkinsession', {path: '/checkin/:sessionId'});
     this.route('messages', {path: '/messages'});
+    this.route('sendmessages', {path: '/messages/sendmessages'});
     this.route('account', {path: '/account'});
 });

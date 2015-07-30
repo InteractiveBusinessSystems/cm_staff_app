@@ -1,5 +1,51 @@
 #BoxRowForMsg
 {
     background-color: gainsboro;
+    width: 100%;
+}
+#BoxRowForMsg > table > tbody > tr > td
+{
 
+    text-align: left;
+}
+
+#BoxRowForMsg > table > tbody > tr
+{
+    border-top: none;
+    border-bottom: 2px solid;
+}
+#checkMsgScrollArea
+{
+    overflow-y: scroll;
+    height: 143px;
+}
+#ShowConversationHere
+{
+
+}
+#ConversationBox
+{
+    background-color: white;
+    height: 250px;
+}
+#messagesubmitbutton
+{
+    padding-left: 0px;
+    width: 75px;
+    padding-right: 1px;
+}
+#messsageinputdiv
+{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#userInputBoxForMessage
+{
+    width: 100%;
+    margin-left: 10px;
+    padding-right: 0px;
+}
+#sendbuttonAndInputRow
+{
+    margin-top: 5px;
 }
