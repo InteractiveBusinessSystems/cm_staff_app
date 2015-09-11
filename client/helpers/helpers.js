@@ -4,6 +4,12 @@ Template.registerHelper('formatToTime', function (dateTime) {
     return formattedTime;
 });
 
+Template.registerHelper('formatToDate', function (dateTime) {
+    var formattedTime = moment(dateTime).format('MM/DD/YYYY');
+    if (formattedTime == 'Invalid date') return '';
+    return formattedTime;
+});
+
 Template.registerHelper("arrayJoin", function (arr) {
     if (arr == null)
         return "No Group";

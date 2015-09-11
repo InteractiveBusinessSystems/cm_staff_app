@@ -1,0 +1,11 @@
+<template name="staticAdminEdit">
+    Title: <input type="text" value="{{sessionData.Title}}"/><br/>
+    Day:
+    <select>
+        {{#each sessionDates}}
+                <option>{{formatToDate date}}</option>
+            {{/each}}
+    </select><br/>
+    Start Time: <input class="" type="time"/><br/>
+    End Time: <input class="" type="time"/>
+</template>

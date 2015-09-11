@@ -7,7 +7,6 @@ Template.staticAdmin.helpers({
 Template.staticAdmin.events({
     "click #addStaticSession": function () {
         var x = Meteor.call("addStaticSession", function (err, data) {
-            debugger;
             window.location = Router.routes["staticAdminEdit"].url({_id: data});
         });
     }
