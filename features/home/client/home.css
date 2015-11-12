@@ -1,12 +1,55 @@
 .checkInStatus{
     font-size: 8pt;
-    height: 100px;
-    width: 100px;
+    height: 135px;
+    width: 140px;
     float: left;
     border: solid 1px #fff;
     margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #AAAAAA;
 }
 
 .checkedIn{
-    background-color: #3c763d;
+    background-color: #fff;
+}
+
+.checkInStatusHeader{
+    background-color: #f67e00;
+    color: #fff;
+    height: 18px;
+    font-size: 10pt;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.checkInStatusText{
+    color: #000;
+}
+
+.checkInStatusAttendance{
+    font-size: 8pt;
+    height: 45px;
+    width: 50px;
+    float: left;
+    border: solid 1px #fff;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #0C84A9;
+    margin-left: 11px;
+}
+
+.checkInStatusAttendanceHeader{
+    background-color: lightblue;
+    color: #0C84A9;
+    height: 15px;
+    font-size: 8pt;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.checkInStatusAttendanceText{
+    color: #000;
+    font-size: 14pt;
 }

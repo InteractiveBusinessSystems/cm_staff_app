@@ -4,9 +4,36 @@
     {{nextSessionCheckIn.[0].SessionStartTime}}
 	{{#each nextSessionCheckIn}}
         {{#if isCheckedIn .}}
-            <div class="checkInStatus checkedIn">{{Rooms}}</div>
+            <div class="checkInStatus checkedIn">
+                <div class="checkInStatusHeader">{{Rooms}}</div>
+                <div class="checkInStatusText">CheckIn: {{formatToTime checkInInfo.proctorCheckInTime}}</div>
+                <div class="checkInStatusText">Start:{{formatToTime checkInInfo.sessionStartTime}}</div>
+                <div class="checkInStatusText">End:{{formatToTime checkInInfo.sessionEndTime}}</div>
+                <div class="checkInStatusText">Proctor:{{getProctor assignees}}</div>
+
+                <div class="checkInStatusAttendance">
+                    <div class="checkInStatusAttendanceHeader">10 Min</div>
+                    <div class="checkInStatusAttendanceText">{{checkInInfo.attendees10}}</div>
+                </div>
+
+                <div class="checkInStatusAttendance">
+                    <div class="checkInStatusAttendanceHeader">50 Min</div>
+                    <div class="checkInStatusAttendanceText">{{checkInInfo.attendees50}}</div>
+                </div>
+
+            </div>
         {{else}}
-            <div class="checkInStatus">{{Rooms}}</div>
+            <div class="checkInStatus">
+                <div class="checkInStatusHeader">{{Rooms}}</div>
+
+                <div class="checkInStatusText" style="padding-top: 20px;">
+                    {{Title}}
+                </div>
+                <div class="checkInStatusAttendanceText">
+                    {{formatToTime SessionStartTime}}
+                </div>
+                <div class="checkInStatusText">{{getProctor assignees}}</div>
+            </div>
         {{/if}}
 
     {{/each}}
