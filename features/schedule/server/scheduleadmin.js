@@ -91,12 +91,19 @@ Meteor.methods({
             SessionList.update({_id: id}, {$set: {checkInInfo: checkInInfo}})
         },
 
-        addStaticSession: function () {
+        addStaticSession: function (session) {
             var sessionTemplate = SessionList.findOne({});
             delete sessionTemplate._id;
             sessionTemplate = clearObject(sessionTemplate);
             sessionTemplate.SessionType = "Static";
+            sessionTemplate.Title = session.Title;
+            sessionTemplate.SessionTime = session.SessionTime;
+            sessionTemplate.SessionStartTime = session.SessionStartTime;
+            sessionTemplate.SessionEndTime = session.SessionEndTime;
             return SessionList.insert(sessionTemplate);
+        },
+        deleteStaticSession: function (id) {
+            SessionList.remove({_id: id});
         }
     }
 );

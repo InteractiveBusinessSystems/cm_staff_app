@@ -3,9 +3,10 @@
     Day:
     <select>
         {{#each sessionDates}}
-                <option>{{formatToDate date}}</option>
-            {{/each}}
+            <option>{{formatToDate date}}</option>
+        {{/each}}
     </select><br/>
     Start Time: <input class="" type="time"/><br/>
     End Time: <input class="" type="time"/>
+    <button id="addStaticSession">Add Session</button>
 </template>
