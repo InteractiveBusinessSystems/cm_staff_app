@@ -18,3 +18,11 @@
 .scheduleTitle{
     padding-left: 20px;
 }
+
+.staticSessions{
+
+}
+
+.staticSessions td, .staticSessions th{
+    padding: 5px;
+}

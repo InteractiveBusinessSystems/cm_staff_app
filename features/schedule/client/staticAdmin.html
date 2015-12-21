@@ -1,17 +1,32 @@
 <template name="staticAdmin">
     <button id="addStaticSession">Add Session</button>
-    {{#each staticSessionList}}
         <div class="staticAdminSession">
-            <table>
-                <tr>
-                    <td><button type="button" id="deleteStaticAdmin" class="btn btn-default">Delete</button></td>
-                    <td><button type="button" id="editStaticAdmin" class="btn btn-default">Edit</button></td>
-                    <td>{{_id}}</td>
-                    <td>{{Title}}</td>
-                </tr>
+            <table class="staticSessions">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Session</th>
+                        <th>Date</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Room</th>
+                    </tr>
+                </thead>
+                {{#each staticSessionList}}
+                    <tr>
+                        <td><button type="button" id="deleteStaticAdmin" class="btn btn-default btn-xs">Delete</button></td>
+                        <td><button type="button" id="editStaticAdmin" class="btn btn-default btn-xs">Edit</button></td>
+
+                        <td>{{Title}}</td>
+                        <td>{{formatToDate SessionStartTime}}</td>
+                        <td>{{formatToTime SessionStartTime}}</td>
+                        <td>{{formatToTime SessionEndTime}}</td>
+                        <td>{{Rooms}}</td>
+                    </tr>
+                {{/each}}
             </table>
         </div>
-    {{/each}}
 
     {{#with modalData}}
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -26,15 +41,16 @@
                     <div class="modal-body" style="color: black">
 
                         Title: <input type="text" id="staticSessionTitle" value="{{Title}}"/><br/>
-                        Day:
-                        <select value="SessionTime">
-                            {{#each sessionDates}}
-                                <option>{{formatToDate date}}</option>
-                            {{/each}}
-                        </select><br/>
-                        Start Time: <input class="" type="time"  value="SessionStartTime"/><br/>
-                        End Time: <input class="" type="time"  value="SessionEndTime" />
-
+                        Day: <input id="staticSessionDate" class="" type="date"  value="{{SessionDate}}"/><br/>
+                        Start Time: <input id="staticSessionStartTime" class="" type="time"  value="{{SessionStartTime}}"/><br/>
+                        End Time: <input id="staticSessionEndTime" class="" type="time"  value="{{SessionEndTime}}" />
+                        <div>Room:
+                        <select value="{{Rooms}}" id="staticSessionRoom">
+                            <option>Registration Booth</option>
+                            <option>Sponsor Booth</option>
+                            <option>KidzMash</option>
+                            <option>Suite 1,Suite 6</option>
+                        </select></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

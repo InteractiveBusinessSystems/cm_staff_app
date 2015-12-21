@@ -6,7 +6,8 @@ Meteor.methods({
                 //var result = HTTP.get("http://localhost:3000/data/sessionsdata.xml");
                 var sessions = result.data.filter(function (item) {
                     return item.SessionType === "Pre-Compiler" ||
-                        item.SessionType === "Regular Session";
+                        item.SessionType === "Regular Session" ||
+                        item.SessionType === "Static";
                 });
 
                 _.map(sessions, function (session) {
@@ -92,6 +93,11 @@ Meteor.methods({
         },
 
         addStaticSession: function (session) {
+            if(session._id){
+                session.Id = session._id;
+                SessionList.update({'_id': session._id}, {$set: session});
+                return;
+            }
             var sessionTemplate = SessionList.findOne({});
             delete sessionTemplate._id;
             sessionTemplate = clearObject(sessionTemplate);
@@ -100,6 +106,7 @@ Meteor.methods({
             sessionTemplate.SessionTime = session.SessionTime;
             sessionTemplate.SessionStartTime = session.SessionStartTime;
             sessionTemplate.SessionEndTime = session.SessionEndTime;
+            sessionTemplate.Rooms = session.Rooms;
             return SessionList.insert(sessionTemplate);
         },
         deleteStaticSession: function (id) {

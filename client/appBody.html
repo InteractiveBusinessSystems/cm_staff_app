@@ -58,7 +58,7 @@
                     <li><a href="{{pathFor route='home'}}" data-toggle="collapse" data-target=".navbar-collapse">Home</a></li>
                     <li><a href="{{pathFor route='schedule'}}" data-toggle="collapse" data-target=".navbar-collapse">My Schedule</a></li>
 
-                    <li><a href="{{pathFor route='messages'}}" data-toggle="collapse" data-target=".navbar-collapse">Messages</a></li>
+
                     <li><a href="{{pathFor route='account'}}" data-toggle="collapse" data-target=".navbar-collapse">My Account</a></li>
                 {{#if isAdminRole currentUser.role}}
                     <li class="dropdown">
@@ -69,8 +69,6 @@
                             <li><a href="{{pathFor route='scheduleAdmin'}}" data-toggle="collapse" data-target=".navbar-collapse">Schedule Admin</a></li>
                             <li><a href="{{pathFor route='staticAdmin'}}" data-toggle="collapse"
                                    data-target=".navbar-collapse">Static Schedule</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Sample</a></li>
                         </ul>
                     </li>
                 {{/if}}
