@@ -12,6 +12,7 @@ Router.map(function () {
     this.route('scheduleAdmin', {path: '/admin/schedule'});
     this.route("staticAdmin", {path: '/admin/static'});
     this.route("staticAdminEdit", {path: '/admin/static/:_id'});
+    this.route("adminHelpers", {path: '/admin/helpers'});
     this.route('schedule', {path: '/schedule'});
     this.route('checkinsession', {path: '/checkin/:sessionId'});
     this.route('messages', {path: '/messages'});

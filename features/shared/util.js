@@ -1,3 +1,3 @@
-function clearObject(obj) {
-
-}
+//function clearObject(obj) {
+//
+//}

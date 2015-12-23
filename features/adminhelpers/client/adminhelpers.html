@@ -1,0 +1,23 @@
+<template name="adminHelpers">
+    <h4 class="page-header">Admin Helpers</h4>
+    <div>Import Users CSV</div>
+    {{#unless uploadingUsers}}
+        <button type="button" class="btn btn-default btn-file">
+            <input type="file" name="userImport" class="userImport" value="">
+        </button>
+        <div>{{uploadingUsersMessage}}</div>
+    {{else}}
+        <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+    {{/unless}}
+
+    <div>Import Static Session CSV</div>
+    {{#unless uploadingStaticSessions}}
+        <button type="button" class="btn btn-default btn-file">
+            <input type="file" name="staticSessionsImport" class="staticSessionsImport" value="">
+        </button>
+        <div>{{uploadingStaticSessionsMessage}}</div>
+    {{else}}
+        <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+    {{/unless}}
+
+</template>

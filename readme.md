@@ -19,6 +19,10 @@ Requires:
 * http
 * momentjs:moment
 * benmgreene:moment-range
+* cfs:standard-packages
+* cfs:filesystem
+* dsyko:meteor-node-csv
+* meteorhacks:npm
 
 [Session Feed](https://cmprod-speakers.azurewebsites.net/api/sessionsdata)
 

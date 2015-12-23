@@ -92,6 +92,18 @@ Meteor.methods({
             SessionList.update({_id: id}, {$set: {checkInInfo: checkInInfo}})
         },
 
+        refreshSessionDates: function(){
+            var data = SessionList.find().fetch();
+            var distinctData = _.uniq(data, false, function (d) {
+                return new Date(d.SessionStartTime).toDateString()
+            });
+
+            SessionDates.remove({});
+            _.forEach(distinctData, function (d) {
+                SessionDates.insert({date: d.SessionStartTime});
+            });
+        },
+
         addStaticSession: function (session) {
             if(session._id){
                 session.Id = session._id;

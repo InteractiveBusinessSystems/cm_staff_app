@@ -13,3 +13,10 @@ nemo64:bootstrap
 http
 momentjs:moment
 benmgreene:moment-range
+cfs:standard-packages
+cfs:filesystem
+dsyko:meteor-node-csv
+meteorhacks:npm
+
+
+npm-container
