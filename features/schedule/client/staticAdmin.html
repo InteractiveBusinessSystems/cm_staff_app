@@ -11,6 +11,7 @@
                         <th>Start</th>
                         <th>End</th>
                         <th>Room</th>
+                        <th># Req.</th>
                     </tr>
                 </thead>
                 {{#each staticSessionList}}
@@ -23,6 +24,7 @@
                         <td>{{formatToTime SessionStartTime}}</td>
                         <td>{{formatToTime SessionEndTime}}</td>
                         <td>{{Rooms}}</td>
+                        <td>{{NumberRequired}}</td>
                     </tr>
                 {{/each}}
             </table>
@@ -43,13 +45,15 @@
                         Title: <input type="text" id="staticSessionTitle" value="{{Title}}"/><br/>
                         Day: <input id="staticSessionDate" class="" type="date"  value="{{SessionDate}}"/><br/>
                         Start Time: <input id="staticSessionStartTime" class="" type="time"  value="{{SessionStartTime}}"/><br/>
-                        End Time: <input id="staticSessionEndTime" class="" type="time"  value="{{SessionEndTime}}" />
+                        End Time: <input id="staticSessionEndTime" class="" type="time"  value="{{SessionEndTime}}" /><br/>
+                        # Required: <input id="staticSessionNumberRequired" class="" type="text" value="{{NumberRequired}}"/>
                         <div>Room:
                         <select value="{{Rooms}}" id="staticSessionRoom">
-                            <option>Registration Booth</option>
+                            <option>Registration</option>
                             <option>Sponsor Booth</option>
                             <option>KidzMash</option>
                             <option>Suite 1,Suite 6</option>
+                            <option>Coat Check</option>
                         </select></div>
                     </div>
                     <div class="modal-footer">

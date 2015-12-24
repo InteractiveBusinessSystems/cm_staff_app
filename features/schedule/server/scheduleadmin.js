@@ -57,7 +57,7 @@ Meteor.methods({
             });
         },
         saveAssignees: function (id, assignees) {
-            SessionList.update({Id: id}, {$set: {assignees: assignees}})
+            SessionList.update({_id: id}, {$set: {assignees: assignees}})
         },
         verifySchedule: function () {
             // clean the list at the start
@@ -131,6 +131,7 @@ Meteor.methods({
             sessionTemplate.SessionStartTime = session.SessionStartTime;
             sessionTemplate.SessionEndTime = session.SessionEndTime;
             sessionTemplate.Rooms = session.Rooms;
+            sessionTemplate.NumberRequired = session.NumberRequired;
             return SessionList.insert(sessionTemplate);
         },
         deleteStaticSession: function (id) {
