@@ -53,3 +53,23 @@
     color: #000;
     font-size: 14pt;
 }
+
+.timeGroup{
+    clear:both;
+    padding-bottom: 10px;
+}
+
+.timeGroupHeader{
+    background-color: #f67e00;
+    padding-left: 10px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.timeGroupSessions{
+    display: none;
+}
+
+.open{
+    display: block !important;
+}

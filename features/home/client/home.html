@@ -1,43 +1,48 @@
 <template name="home">
 
 	<h2>Session Check In Status</h2>
-    {{nextSessionCheckIn.[0].SessionStartTime}}
-	{{#each nextSessionCheckIn}}
-        {{#if isCheckedIn .}}
-            <div class="checkInStatus checkedIn">
-                <div class="checkInStatusHeader">{{Rooms}}</div>
-                <div class="checkInStatusText">CheckIn: {{formatToTime checkInInfo.proctorCheckInTime}}</div>
-                <div class="checkInStatusText">Start:{{formatToTime checkInInfo.sessionStartTime}}</div>
-                <div class="checkInStatusText">End:{{formatToTime checkInInfo.sessionEndTime}}</div>
-                <div class="checkInStatusText">Proctor:{{getProctor assignees}}</div>
+    {{#each nextSessionCheckIn}}
+        <div class="timeGroup">
+            <div class="timeGroupHeader">{{formatToTime [0].SessionStartTime}}</div>
+            <div class="timeGroupSessions {{isCurrent [0].SessionStartTime [0].SessionEndTime}}">
+	    {{#each .}}
+            {{#if isCheckedIn .}}
+                <div class="checkInStatus checkedIn">
+                    <div class="checkInStatusHeader">{{Rooms}}</div>
+                    <div class="checkInStatusText">CheckIn: {{formatToTime checkInInfo.proctorCheckInTime}}</div>
+                    <div class="checkInStatusText">Start:{{formatToTime checkInInfo.sessionStartTime}}</div>
+                    <div class="checkInStatusText">End:{{formatToTime checkInInfo.sessionEndTime}}</div>
+                    <div class="checkInStatusText">Proctor:{{getProctor assignees}}</div>
 
-                <div class="checkInStatusAttendance">
-                    <div class="checkInStatusAttendanceHeader">10 Min</div>
-                    <div class="checkInStatusAttendanceText">{{checkInInfo.attendees10}}</div>
+                    <div class="checkInStatusAttendance">
+                        <div class="checkInStatusAttendanceHeader">10 Min</div>
+                        <div class="checkInStatusAttendanceText">{{checkInInfo.attendees10}}</div>
+                    </div>
+
+                    <div class="checkInStatusAttendance">
+                        <div class="checkInStatusAttendanceHeader">50 Min</div>
+                        <div class="checkInStatusAttendanceText">{{checkInInfo.attendees50}}</div>
+                    </div>
+
                 </div>
+            {{else}}
+                <div class="checkInStatus">
+                    <div class="checkInStatusHeader">{{Rooms}}</div>
 
-                <div class="checkInStatusAttendance">
-                    <div class="checkInStatusAttendanceHeader">50 Min</div>
-                    <div class="checkInStatusAttendanceText">{{checkInInfo.attendees50}}</div>
+                    <div class="checkInStatusText" style="padding-top: 20px;">
+                        {{Title}}
+                    </div>
+                    <div class="checkInStatusAttendanceText">
+                        {{formatToTime SessionStartTime}}
+                    </div>
+                    <div class="checkInStatusText">{{getProctor assignees}}</div>
                 </div>
+            {{/if}}
 
+        {{/each}}
             </div>
-        {{else}}
-            <div class="checkInStatus">
-                <div class="checkInStatusHeader">{{Rooms}}</div>
-
-                <div class="checkInStatusText" style="padding-top: 20px;">
-                    {{Title}}
-                </div>
-                <div class="checkInStatusAttendanceText">
-                    {{formatToTime SessionStartTime}}
-                </div>
-                <div class="checkInStatusText">{{getProctor assignees}}</div>
-            </div>
-        {{/if}}
-
+        </div>
     {{/each}}
-
     <div id="example" class="modal hide fade in" style=" ">
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>
