@@ -7,12 +7,14 @@
             <div class="timeGroupSessions {{isCurrent [0].SessionStartTime [0].SessionEndTime}}">
 	    {{#each .}}
             {{#if isCheckedIn .}}
-                <div class="checkInStatus checkedIn">
+                <div class="checkInStatus {{checkedInClass .}}">
                     <div class="checkInStatusHeader">{{Rooms}}</div>
                     <div class="checkInStatusText">CheckIn: {{formatToTime checkInInfo.proctorCheckInTime}}</div>
+                    <div class="checkInStatusText proctors">Proctor:{{{getProctor assignees checkInInfo.proctorCheckIns}}}</div>
+
+                    {{#if notStatic SessionType}}
                     <div class="checkInStatusText">Start:{{formatToTime checkInInfo.sessionStartTime}}</div>
                     <div class="checkInStatusText">End:{{formatToTime checkInInfo.sessionEndTime}}</div>
-                    <div class="checkInStatusText">Proctor:{{getProctor assignees}}</div>
 
                     <div class="checkInStatusAttendance">
                         <div class="checkInStatusAttendanceHeader">10 Min</div>
@@ -23,19 +25,19 @@
                         <div class="checkInStatusAttendanceHeader">50 Min</div>
                         <div class="checkInStatusAttendanceText">{{checkInInfo.attendees50}}</div>
                     </div>
-
+                    {{/if}}
                 </div>
             {{else}}
                 <div class="checkInStatus">
                     <div class="checkInStatusHeader">{{Rooms}}</div>
 
-                    <div class="checkInStatusText" style="padding-top: 20px;">
+                    <div class="checkInStatusText" style="padding-top: 10px;">
                         {{Title}}
                     </div>
                     <div class="checkInStatusAttendanceText">
                         {{formatToTime SessionStartTime}}
                     </div>
-                    <div class="checkInStatusText">{{getProctor assignees}}</div>
+                    <div class="checkInStatusText proctors">{{{getProctor assignees}}}</div>
                 </div>
             {{/if}}
 
@@ -43,19 +45,32 @@
             </div>
         </div>
     {{/each}}
-    <div id="example" class="modal hide fade in" style=" ">
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
-            <h3>This is a Modal Heading</h3>
+    {{#with modalData}}
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style="color: black" id="myModalLabel">{{Title}}</h4>
+                    </div>
+                    <div class="modal-body" style="color: black">
+                        <div>Status: {{sessionStatus checkInInfo}}</div>
+                        <div>Session Time: {{formatToTime SessionStartTime}} to {{formatToTime SessionEndTime}}</div>
+                        {{#if notStatic SessionType}}
+                            <div>Attendance 10 minutes In: {{checkInInfo.attendees10}}</div>
+                            <div>Attendance 50 minutes In: {{checkInInfo.attendees50}}</div>
+                            <div>Notes: {{checkInInfo.notes}}</div>
+                        {{/if}}
+                        <div>Proctor(s):{{{getProctor assignees}}}</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <h4>Text in a modal</h4>
-            <p>You can add some text here.</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn btn-success">Call to action</a>
-            <a href="#" class="btn" data-dismiss="modal">Close</a>
-        </div>
-    </div>
-    <p><a data-toggle="modal" href="#example" class="btn btn-primary btn-large">Launch demo modal</a></p>
+    {{/with}}
+
 </template>

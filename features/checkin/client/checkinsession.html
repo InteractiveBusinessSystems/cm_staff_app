@@ -5,7 +5,7 @@
             <div class="statusTextTitle">Status</div>
             <div class="statusText">{{sessionStatus}}</div>
         </div>
-
+        {{#if notStatic SessionType}}
         <div class="sessionStatusContainer">
             <div id="startTime" class="checkInBtn" style="background-color: {{startTimeStatusColor}}">Session<br/>Start</div>
             <div class="statusTextTitle">Start Time</div>
@@ -36,10 +36,11 @@
             <textarea id="notes" rows="4"
                       style="border-radius: 10px; width: 100%; color: #000">{{checkInInfo.notes}}</textarea>
         </div>
-
+        {{/if}}
         <div class="sessionInfo">
 
             <div class="schedule-session-title">{{Title}}</div>
+            {{#if notStatic SessionType}}
             <div class="schedule-session-heading">Speaker(s):</div>
 
             <div class="schedule-session-speakers-container">
@@ -52,6 +53,7 @@
                 </div>
             {{/each}}
             </div>
+            {{/if}}
             <div style="clear: both"></div>
 
             <div class="schedule-session-heading">Time:</div>

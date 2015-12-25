@@ -22,7 +22,7 @@ Meteor.methods({
                             proctorCheckInTime: '',
                             sessionStartTime: '',
                             sessionEndTime: '',
-                            proctor: '',
+                            proctorCheckIns: [],
                             attendees10: 0,
                             attendees50: 0,
                             notes: ''
