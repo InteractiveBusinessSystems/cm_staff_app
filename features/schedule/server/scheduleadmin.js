@@ -65,8 +65,8 @@ Meteor.methods({
             _.forEach(sessions, function (session) {
                 _.forEach(sessions, function (session2) {
                     if (session._id != session2._id) {
-                        var sessionRange1 = moment.range(session.SessionStartTime, session.SessionEndTime)
-                        var sessionRange2 = moment.range(session2.SessionStartTime, session2.SessionEndTime)
+                        var sessionRange1 = moment.range(session.SessionStartTime, session.SessionEndTime);
+                        var sessionRange2 = moment.range(session2.SessionStartTime, session2.SessionEndTime);
                         if (sessionRange1.overlaps(sessionRange2)) {
                             _.forEach(session.assignees, function (userId) {
                                 if (session2.assignees.indexOf(userId) != -1) {
@@ -88,11 +88,69 @@ Meteor.methods({
                 SessionCollisions.insert(coll);
             });
         },
+        scheduleAutofill: function () {
+            var sessions = SessionList.find({}).fetch();
+
+            var dates = SessionDates.find({}).fetch();
+            var volunteers = Meteor.users.find({"groups": "Volunteers"}).fetch();
+
+            var split = "13:00:00";
+
+
+            _.each(dates, function (date) {
+                var morning = [];
+                var afternoon = [];
+                var needsPeople = [];
+
+                var day = moment(date.date);
+
+                // getting the list of users already
+                _.each(sessions, function (session) {
+                    var sessionStartTime = moment(session.SessionStartTime).format("YYYY-MM-DD");
+                    if (day.format("YYYY-MM-DD") != sessionStartTime) {
+                        // not the correct day
+                        return;
+                    }
+
+                    if (session.assignees.length > 0) {
+                        _.each(session.assignees, function (asignee) {
+                            var user = _.first(_.where(volunteers, {"_id": asignee}));
+                            user.minutes = user.minutes || 0;
+
+                            user.minutes += moment(session.SessionEndTime).diff(moment(session.SessionStartTime), "minutes");
+
+                            var s = moment(session.SessionStartTime).diff(moment(sessionStartTime + "T" + split));
+
+                            if (s >= 0) {
+                                // afternoon person
+                                afternoon.push(user._id);
+                            }
+                            else {
+                                morning.push(user._id);
+                            }
+                        });
+                    }
+                });
+
+                _.each(sessions, function (session) {
+                    var sessionStartTime = moment(session.SessionStartTime).format("YYYY-MM-DD");
+                    if (day.format("YYYY-MM-DD") != sessionStartTime) {
+                        // not the correct day
+                        return;
+                    }
+
+
+                });
+
+                console.log(morning);
+                console.log(afternoon);
+            })
+        },
         saveCheckInInfo: function (id, checkInInfo) {
             SessionList.update({_id: id}, {$set: {checkInInfo: checkInInfo}})
         },
 
-        refreshSessionDates: function(){
+        refreshSessionDates: function () {
             var data = SessionList.find().fetch();
             var distinctData = _.uniq(data, false, function (d) {
                 return new Date(d.SessionStartTime).toDateString()
@@ -105,7 +163,7 @@ Meteor.methods({
         },
 
         addStaticSession: function (session) {
-            if(session._id){
+            if (session._id) {
                 session.Id = session._id;
                 SessionList.update({'_id': session._id}, {$set: session});
                 return;

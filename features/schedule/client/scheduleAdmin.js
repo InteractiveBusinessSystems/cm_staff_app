@@ -69,6 +69,11 @@ Template.scheduleAdmin.events({
         });
     },
 
+    'click #scheduleAutofill': function () {
+        Meteor.call('scheduleAutofill', function (err, data) {
+        });
+    },
+
     'click .datePicker': function () {
         Session.set('selectedScheduleDate', this.toString());
     },
