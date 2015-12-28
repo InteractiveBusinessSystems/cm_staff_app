@@ -104,6 +104,8 @@ Template.adminHelpers.events({
     },
     "click #deleteAllSessions": function(){
         Meteor.call('deleteAllSessions', function(){ alert('Delete All Sessions Completed.');})
+    },
+    "click #exportSessions": function () {
+        Meteor.call("exportSessions");
     }
-
 });

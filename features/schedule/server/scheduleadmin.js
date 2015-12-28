@@ -222,7 +222,7 @@ Meteor.methods({
                                 }
                             }
 
-                            if(cUser != null) {
+                            if(cUser == null) {
                                 // the current list is no good;
 
                                 var aList = _.sortBy(afternoon, "minutes");
@@ -235,7 +235,7 @@ Meteor.methods({
                                 }
                             }
 
-                            if(cUser != null) {
+                            if(cUser == null) {
                                 // no good, check morning people
 
                                 var aList = _.sortBy(morning, "minutes");
@@ -259,7 +259,7 @@ Meteor.methods({
                                 }
                             }
 
-                            if(cUser != null) {
+                            if(cUser == null) {
                                 // the current list is no good;
 
                                 var aList = _.sortBy(morning, "minutes");
@@ -272,7 +272,7 @@ Meteor.methods({
                                 }
                             }
 
-                            if(cUser != null) {
+                            if(cUser == null) {
                                 // no good, check afternoon people
 
                                 var aList = _.sortBy(afternoon, "minutes");
@@ -289,13 +289,16 @@ Meteor.methods({
                         }
 
                         if(cUser != null) {
+                            //console.log("assigned user to", '"' + session.Title + '"', "in seat", i);
                             session.assignees.push(cUser.id);
                             cUser.minutes += moment(session.SessionEndTime).diff(moment(session.SessionStartTime), "minutes");
+                        }
+                        else {
+                            console.log("failed assigning user to", '"' + session.Title + '"', "in seat", i, "on day", day.format());
                         }
                     }
 
                     Meteor.call("saveAssignees", session._id, session.assignees);
-                    console.log("session assigned", session.Title)
                 });
             });
 
