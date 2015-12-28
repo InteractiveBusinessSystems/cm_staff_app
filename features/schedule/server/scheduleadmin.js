@@ -1,3 +1,5 @@
+_ = lodash;
+
 Meteor.methods({
         refreshSchedule: function () {
             this.unblock();
@@ -98,7 +100,6 @@ Meteor.methods({
 
             var split = "13:00:00";
 
-
             _.each(dates, function (date) {
                 var morning = [];
                 var afternoon = [];
@@ -125,14 +126,47 @@ Meteor.methods({
 
                             if (s >= 0) {
                                 // afternoon person
-                                afternoon.push(user._id);
+                                afternoon.push({
+                                    id: user._id,
+                                    minutes: user.minutes
+                                });
                             }
                             else {
-                                morning.push(user._id);
+                                morning.push({
+                                    id: user._id,
+                                    minutes: user.minutes
+                                });
                             }
                         });
                     }
                 });
+
+                _.each(volunteers, function (vol) {
+                    // check if their already in it
+
+                    if (_.contains(afternoon, vol._id) || _.contains(morning, vol._id)) {
+                        return;
+                    }
+
+                    if (morning.length < afternoon.length) {
+                        morning.push({
+                            id: vol._id,
+                            minutes: 0
+                        });
+                    }
+                    else {
+                        afternoon.push({
+                            id: vol._id,
+                            minutes: 0
+                        });
+                    }
+                });
+
+                var morningList = _.shuffle(_.where(morning, {minutes: _.min(morning, "minutes").minutes}));
+                var afternoonList = _.shuffle(_.where(afternoon, {minutes: _.min(afternoon, "minutes").minutes}));
+
+                var morningIndex = 0;
+                var afternoonIndex = 0;
 
                 _.each(sessions, function (session) {
                     var sessionStartTime = moment(session.SessionStartTime).format("YYYY-MM-DD");
@@ -141,17 +175,136 @@ Meteor.methods({
                         return;
                     }
 
+                    var numReq = session.NumberRequired || 1;
 
+                    if (numReq == session.assignees.length) {
+                        return; // no need to assign anyone
+                    }
+
+                    var s = moment(session.SessionStartTime).diff(moment(sessionStartTime + "T" + split));
+
+                    var isAfternoon = false;
+
+                    if (s >= 0) {
+                        isAfternoon = true;
+                    }
+
+                    var collide = [];
+
+                    _.forEach(sessions, function (session2) {
+                        if (session._id != session2._id) {
+                            var sessionRange1 = moment.range(session.SessionStartTime, session.SessionEndTime);
+                            var sessionRange2 = moment.range(session2.SessionStartTime, session2.SessionEndTime);
+                            if (sessionRange1.overlaps(sessionRange2)) {
+                                _.forEach(session2.assignees, function (userId) {
+                                    collide.push(userId);
+                                });
+                            }
+                        }
+                    });
+
+                    for (var i = session.assignees.length; i < numReq; i++) {
+                        if(morningList.length == 0) {
+                            morningList = _.shuffle(_.where(morning, {minutes: _.min(morning, "minutes").minutes}));
+                        }
+                        if(afternoonList.length == 0) {
+                            afternoonList = _.shuffle(_.where(afternoon, {minutes: _.min(afternoon, "minutes").minutes}));
+                        }
+
+                        var cUser = null;
+
+                        if(isAfternoon) {
+                            for(var j = 0; j < afternoonList.length; j++) {
+                                if(!_.contains(collide, afternoonList[j].id)) {
+                                    cUser = afternoonList[j];
+                                    _.remove(afternoonList, {id: afternoonList[j].id});
+                                    break;
+                                }
+                            }
+
+                            if(cUser != null) {
+                                // the current list is no good;
+
+                                var aList = _.sortBy(afternoon, "minutes");
+
+                                for(var j = 0; j < aList.length; j++) {
+                                    if(!_.contains(collide, aList[j].id)) {
+                                        cUser = aList[j];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if(cUser != null) {
+                                // no good, check morning people
+
+                                var aList = _.sortBy(morning, "minutes");
+
+                                for(var j = 0; j < aList.length; j++) {
+                                    if(!_.contains(collide, aList[j].id)) {
+                                        cUser = aList[j];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            // if it's not here it's no good
+                        }
+                        else {
+                            for(var j = 0; j < morningList.length; j++) {
+                                if(!_.contains(collide, morningList[j].id)) {
+                                    cUser = morningList[j];
+                                    _.remove(morningList, {id: morningList[j].id});
+                                    break;
+                                }
+                            }
+
+                            if(cUser != null) {
+                                // the current list is no good;
+
+                                var aList = _.sortBy(morning, "minutes");
+
+                                for(var j = 0; j < aList.length; j++) {
+                                    if(!_.contains(collide, aList[j].id)) {
+                                        cUser = aList[j];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if(cUser != null) {
+                                // no good, check afternoon people
+
+                                var aList = _.sortBy(afternoon, "minutes");
+
+                                for(var j = 0; j < aList.length; j++) {
+                                    if(!_.contains(collide, aList[j].id)) {
+                                        cUser = aList[j];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            // if it's not here it's no good
+                        }
+
+                        if(cUser != null) {
+                            session.assignees.push(cUser.id);
+                            cUser.minutes += moment(session.SessionEndTime).diff(moment(session.SessionStartTime), "minutes");
+                        }
+                    }
+
+                    Meteor.call("saveAssignees", session._id, session.assignees);
+                    console.log("session assigned", session.Title)
                 });
+            });
 
-                console.log(morning);
-                console.log(afternoon);
-            })
+            console.log("done");
         },
         saveCheckInInfo: function (id, checkInInfo) {
             SessionList.update({_id: id}, {$set: {checkInInfo: checkInInfo}})
         },
-        refreshSessionDates: function(){
+        refreshSessionDates: function () {
             var data = SessionList.find().fetch();
             var distinctData = _.uniq(data, false, function (d) {
                 return new Date(d.SessionStartTime).toDateString()
@@ -161,10 +314,10 @@ Meteor.methods({
                 SessionDates.insert({date: d.SessionStartTime});
             });
         },
-        changeDatesForTesting: function(dateTransformations){
+        changeDatesForTesting: function (dateTransformations) {
             var sessions = SessionList.find().fetch();
-            _.forEach(sessions, function(session){
-                for(var i = 0;i < dateTransformations.length;i++) {
+            _.forEach(sessions, function (session) {
+                for (var i = 0; i < dateTransformations.length; i++) {
                     if (moment(session.SessionStartTime).format('YYYY-MM-DD') == moment(dateTransformations[i].dateFrom).format('YYYY-MM-DD')) {
                         //Transform date
                         var x = moment(moment(dateTransformations[i].dateTo).format('YYYY-MM-DD') + moment(session.SessionStartTime).format('THH:mm:ss')).format('YYYY-MM-DDTHH:mm:ss');
@@ -195,7 +348,7 @@ Meteor.methods({
         deleteStaticSession: function (id) {
             SessionList.remove({_id: id});
         },
-        deleteAllSessions: function(){
+        deleteAllSessions: function () {
             SessionList.remove({});
         }
     }

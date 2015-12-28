@@ -33,6 +33,7 @@ deps@1.0.7
 dsyko:meteor-node-csv@0.3.7
 ejson@1.0.6
 email@1.0.6
+erasaur:meteor-lodash@3.10.1_1
 fastclick@1.0.3
 geojson-utils@1.0.3
 html-tools@1.0.4
