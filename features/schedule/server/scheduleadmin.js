@@ -3,7 +3,9 @@ Meteor.methods({
             this.unblock();
             try {
                 var result = HTTP.get("https://cmprod-speakers.azurewebsites.net/api/sessionsdata");
-                //var result = HTTP.get("http://localhost:3000/data/sessionsdata.xml");
+
+                //var result = HTTP.get("http://ibs-dev-smz4.enterprisesolutions.ibs.com:3003/sessionsdata");
+
                 var sessions = result.data.filter(function (item) {
                     return item.SessionType === "Pre-Compiler" ||
                         item.SessionType === "Regular Session" ||
@@ -20,7 +22,7 @@ Meteor.methods({
                             proctorCheckInTime: '',
                             sessionStartTime: '',
                             sessionEndTime: '',
-                            proctor: '',
+                            proctorCheckIns: [],
                             attendees10: 0,
                             attendees50: 0,
                             notes: ''
@@ -55,7 +57,7 @@ Meteor.methods({
             });
         },
         saveAssignees: function (id, assignees) {
-            SessionList.update({Id: id}, {$set: {assignees: assignees}})
+            SessionList.update({_id: id}, {$set: {assignees: assignees}})
         },
         verifySchedule: function () {
             // clean the list at the start
@@ -149,19 +151,29 @@ Meteor.methods({
         saveCheckInInfo: function (id, checkInInfo) {
             SessionList.update({_id: id}, {$set: {checkInInfo: checkInInfo}})
         },
-
-        refreshSessionDates: function () {
+        refreshSessionDates: function(){
             var data = SessionList.find().fetch();
             var distinctData = _.uniq(data, false, function (d) {
                 return new Date(d.SessionStartTime).toDateString()
             });
-
             SessionDates.remove({});
             _.forEach(distinctData, function (d) {
                 SessionDates.insert({date: d.SessionStartTime});
             });
         },
-
+        changeDatesForTesting: function(dateTransformations){
+            var sessions = SessionList.find().fetch();
+            _.forEach(sessions, function(session){
+                for(var i = 0;i < dateTransformations.length;i++) {
+                    if (moment(session.SessionStartTime).format('YYYY-MM-DD') == moment(dateTransformations[i].dateFrom).format('YYYY-MM-DD')) {
+                        //Transform date
+                        var x = moment(moment(dateTransformations[i].dateTo).format('YYYY-MM-DD') + moment(session.SessionStartTime).format('THH:mm:ss')).format('YYYY-MM-DDTHH:mm:ss');
+                        var y = moment(moment(dateTransformations[i].dateTo).format('YYYY-MM-DD') + moment(session.SessionEndTime).format('THH:mm:ss')).format('YYYY-MM-DDTHH:mm:ss');
+                        SessionList.update({_id: session._id}, {$set: {SessionStartTime: x, SessionEndTime: y}});
+                    }
+                }
+            });
+        },
         addStaticSession: function (session) {
             if (session._id) {
                 session.Id = session._id;
@@ -177,10 +189,14 @@ Meteor.methods({
             sessionTemplate.SessionStartTime = session.SessionStartTime;
             sessionTemplate.SessionEndTime = session.SessionEndTime;
             sessionTemplate.Rooms = session.Rooms;
+            sessionTemplate.NumberRequired = session.NumberRequired;
             return SessionList.insert(sessionTemplate);
         },
         deleteStaticSession: function (id) {
             SessionList.remove({_id: id});
+        },
+        deleteAllSessions: function(){
+            SessionList.remove({});
         }
     }
 );

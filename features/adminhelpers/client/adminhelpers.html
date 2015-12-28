@@ -10,7 +10,7 @@
         <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
     {{/unless}}
 
-    <div>Import Static Session CSV</div>
+    <div style="padding-top: 50px;">Import Static Session CSV</div>
     {{#unless uploadingStaticSessions}}
         <button type="button" class="btn btn-default btn-file">
             <input type="file" name="staticSessionsImport" class="staticSessionsImport" value="">
@@ -20,4 +20,19 @@
         <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
     {{/unless}}
 
+    <div style="padding-top: 50px;">Change Dates</div>
+    <div>
+        {{#each dateList}}
+            <div class="dateFromTo">
+                <span class="dateFrom">{{.}}</span> => <input type="text" class="dateTo" value="{{.}}">
+            </div>
+        {{/each}}
+    </div>
+    <input type="button" id="btnChangeDates" value="Change 'em">
+
+    <div style="padding-top: 50px;">Other</div>
+    <div>
+        <div><input type="button" id="refreshSessionDates" value="Refresh Session Dates"></div>
+        <div><input type="button" id="deleteAllSessions" value="Delete All Sessions"></div>
+    </div>
 </template>

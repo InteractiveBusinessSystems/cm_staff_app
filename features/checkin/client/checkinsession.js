@@ -19,8 +19,11 @@ Template.checkinsession.helpers({
             return "Done";
         }
     },
+    "notStatic":function(sessionType){
+        return sessionType != 'Static';
+    },
     'checkInStatusColor': function () {
-        if (this.checkInInfo.proctorCheckInTime !== "") {
+        if (_.findWhere(this.checkInInfo.proctorCheckIns, {proctorId:Meteor.userId()})) {
             return "#666666";
         }
         return '#f67e00';
@@ -75,12 +78,25 @@ Template.checkinsession.events({
         Meteor.call('saveCheckInInfo', this._id, this.checkInInfo);
     },
     'click #checkInBtn': function (e) {
-        if (this.checkInInfo.proctorCheckInTime === '') {
-            this.checkInInfo.proctorCheckInTime = new Date();
+        if (!this.checkInInfo.proctorCheckIns)
+            this.checkInInfo.proctorCheckIns = [];
+
+        var userIsCheckedIn = _.findWhere(this.checkInInfo.proctorCheckIns, {proctorId:Meteor.userId()});
+        if(this.checkInInfo.proctorCheckIns && !userIsCheckedIn){
+            //Check In
+            this.checkInInfo.proctorCheckIns.push({
+                proctorId: Meteor.userId(),
+                proctorCheckInTime: new Date()
+            });
+            if (this.checkInInfo.proctorCheckInTime === '')
+                this.checkInInfo.proctorCheckInTime = new Date();
         }
-        else {
-            this.checkInInfo.proctorCheckInTime = '';
+        else{
+            this.checkInInfo.proctorCheckIns = _.filter(this.checkInInfo.proctorCheckIns, function(x){return x.proctorId !== Meteor.userId();});
+            if (this.checkInInfo.proctorCheckInTime !== '' && this.checkInInfo.proctorCheckIns.length === 0)
+                this.checkInInfo.proctorCheckInTime = '';
         }
+
         Meteor.call('saveCheckInInfo', this._id, this.checkInInfo);
     },
     'click #attendees10': function (e) {

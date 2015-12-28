@@ -55,8 +55,8 @@ Meteor.methods({
                     sessionTemplate.SessionType = row[5];
                     sessionTemplate.Title = row[3];
                     sessionTemplate.SessionTime = null;
-                    sessionTemplate.SessionStartTime = moment(row[0]).toDate();
-                    sessionTemplate.SessionEndTime = moment(row[1]).toDate();
+                    sessionTemplate.SessionStartTime = moment(row[0]).format('YYYY-MM-DDTHH:mm:ss');
+                    sessionTemplate.SessionEndTime = moment(row[1]).format('YYYY-MM-DDTHH:mm:ss');
                     sessionTemplate.Rooms = [row[2]];
                     sessionTemplate.NumberRequired = row[6];
                     SessionList.insert(sessionTemplate);

@@ -34,7 +34,7 @@ Template.scheduleAdmin.helpers({
     "volunteerList": function () {
         _modalDep.depend();
         if (typeof(_currentSelectedSession.assignees) !== "undefined")
-            return Meteor.users.find({"groups": "Volunteers", "_id": {$nin: _currentSelectedSession.assignees}});
+            return _.sortBy(Meteor.users.find({"groups": "Volunteers", "_id": {$nin: _currentSelectedSession.assignees}}).fetch(),function(val){ return val.profile.lastName;});
         else
             return [];
     },
@@ -85,7 +85,7 @@ Template.scheduleAdmin.events({
 
     },
     "click #saveAssigneeButton": function () {
-        var id = this.Id;
+        var id = this._id;
         Meteor.call("saveAssignees", id, this.assignees);
         $("#myModal").modal('hide')
     },
@@ -125,7 +125,7 @@ Template.scheduleAdminSession.helpers({
 
 Template.registerHelper('getTop', function (startTime) {
     var x = moment.duration(startTime) / 60000;
-    x = x - 445;
+    x = x - 375;
     return x.toString() + 'px';
 });
 

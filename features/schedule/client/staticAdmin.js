@@ -22,11 +22,13 @@ Template.staticAdmin.events({
         _currentSelectedSession.SessionEndTime = '';
         _currentSelectedSession.SessionDate = '';
         _currentSelectedSession.Rooms = [];
+        _currentSelectedSession.NumberRequired = 0;
 
         $('#staticSessionDate').val('');
         $('#staticSessionTitle').val('');
         $('#staticSessionStartTime').val('');
         $('#staticSessionEndTime').val('');
+        $('#staticSessionNumberRequired').val('');
         _modalDep.changed();
         $("#myModal").modal();
     },
@@ -44,6 +46,7 @@ Template.staticAdmin.events({
         _currentSelectedSession.SessionStartTime = moment($('#staticSessionDate').val() + ' ' + $('#staticSessionStartTime').val()).format('YYYY-MM-DDTHH:mm:ss');
         _currentSelectedSession.SessionEndTime = moment($('#staticSessionDate').val() + ' ' + $('#staticSessionEndTime').val()).format('YYYY-MM-DDTHH:mm:ss');
         _currentSelectedSession.Rooms = $('#staticSessionRoom').val().split(',');
+        _currentSelectedSession.NumberRequired = $('#staticSessionNumberRequired').val();
 
         Meteor.call("addStaticSession", _currentSelectedSession);
         $("#myModal").modal('hide')
