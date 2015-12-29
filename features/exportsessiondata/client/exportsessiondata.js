@@ -15,7 +15,7 @@ Template.exportsessiondata.events({
                 "Rooms" : session.Rooms,
                 "Title" : session.Title,
                 "SessionType" : session.SessionType,
-                "assignees" : session.assignees,
+                "assignees" : getAssignees(session.assignees),
                 "proctorCheckInTime" : session.checkInInfo.proctorCheckInTime,
                 "sessionStartTime" : session.checkInInfo.sessionStartTime,
                 "sessionEndTime" : session.checkInInfo.sessionEndTime,
@@ -31,6 +31,14 @@ Template.exportsessiondata.events({
     }
 });
 
+function getAssignees(assigneeIds){
+    var assigneeNames = '';
+    _.each(assigneeIds, function(assigneeId){
+        var user = Meteor.users.findOne({_id:assigneeId});
+        assigneeNames += user.profile.firstName + ' ' + user.profile.lastName + ';';
+    });
+    return assigneeNames;
+}
 
 function JSON2CSV(objArray) {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;

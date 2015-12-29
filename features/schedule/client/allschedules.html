@@ -1,0 +1,18 @@
+<template name="allschedules">
+{{#each allsessions}}
+    <h3 class="volunteerName">{{LastName}}, {{FirstName}}</h3>
+    <div>Number of Sessions: {{NumSessions}}</div>
+    <div>Duration - Hours: {{DurationHours}} Minutes: {{DurationMinutes}}</div>
+    {{#each Sessions}}
+        <div class="scheduleDateHeader">{{formatToDate this.[0].SessionStartTime}}</div>
+        {{#each .}}
+            <div class="scheduleSession">
+                <div class="scheduleTime">{{formatToTime SessionStartTime}} to {{formatToTime SessionEndTime}}</div>
+                <div class="scheduleTitle">{{Title}}</div>
+            </div>
+        {{/each}}
+    {{/each}}
+    <hr />
+{{/each}}
+
+</template>

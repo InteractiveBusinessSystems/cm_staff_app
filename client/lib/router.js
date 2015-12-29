@@ -19,4 +19,5 @@ Router.map(function () {
     this.route('sendmessages', {path: '/messages/sendmessages'});
     this.route('account', {path: '/account'});
     this.route('exportsessiondata', {path: '/exportsessiondata'});
+    this.route('allschedules', {path: '/allschedules'});
 });
