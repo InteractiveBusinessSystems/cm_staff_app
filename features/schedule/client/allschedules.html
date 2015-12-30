@@ -1,5 +1,24 @@
 <template name="allschedules">
-{{#each allsessions}}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Num Of Sessions</th>
+        <th>Duration</th>
+    </tr>
+
+    {{#each allsessions}}
+        <tr>
+            <td>{{LastName}}, {{FirstName}}</td>
+            <td>{{NumSessions}}</td>
+            <td>Hours: {{DurationHours}} Minutes: {{DurationMinutes}}</td>
+        </tr>
+    {{/each}}
+
+</table>
+
+
+
+    {{#each allsessions}}
     <h3 class="volunteerName">{{LastName}}, {{FirstName}}</h3>
     <div>Number of Sessions: {{NumSessions}}</div>
     <div>Duration - Hours: {{DurationHours}} Minutes: {{DurationMinutes}}</div>
@@ -14,5 +33,7 @@
     {{/each}}
     <hr />
 {{/each}}
+
+
 
 </template>

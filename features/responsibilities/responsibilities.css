@@ -1,0 +1,17 @@
+.responsibilitiesHeader{
+
+    background-color: #f67e00;
+    margin: 20px -3% 15px -3%;
+    padding: 3px 3%;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.responsibilitiesSubHeader{
+    font-size: smaller;
+    color:#AAAAAA;
+}
+
+.responsibilitiesContainer{
+    font-size: smaller;
+}
