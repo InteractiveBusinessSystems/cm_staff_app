@@ -40,29 +40,6 @@ Meteor.methods({
                 })
         },1000)
     },
-    exportSessions: function () {
-        var sessions = SessionList.find({}).fetch();
-        var volunteers = Meteor.users.find({"groups": "Volunteers"}).fetch();
-
-        console.log("starting export");
-        _.each(sessions, function (session) {
-            var row = [];
-
-            row.push(session.Id);
-            row.push(q(session.Title));
-            row.push(q(session.SessionType));
-            row.push(q(session.Tags.join(",")));
-            row.push(q(session.Category));
-
-
-
-            console.log(row.join(", "));
-        });
-
-        function q (str) {
-            return '"' + str + '"';
-        }
-    },
     'uploadStaticSessionFile':function(fileid,filename){
         var fs = Meteor.npmRequire('fs');
         var file = Uploads.find({_id:fileid});

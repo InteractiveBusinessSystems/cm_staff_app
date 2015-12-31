@@ -1,5 +1,6 @@
 <template name="schedule">
     <h3>My Schedule</h3>
+
     <div>
         {{#each mySchedule}}
             <div class="scheduleDateHeader">
@@ -15,7 +16,9 @@
     {{#each .}}
         <div class="scheduleSession">
             <div class="scheduleTime">{{formatToTime SessionStartTime}} - {{formatToTime SessionEndTime}}</div>
-            <div class="scheduleTitle"><a href={{pathFor 'checkinsession' sessionId=_id}}>{{Title}}</a></div>
+            <div class="scheduleTitle"><a href={{pathFor 'checkinsession' sessionId=_id}}>{{Title}}</a> - <a
+                    href="javascript: void 0;" class="switch-session">Switch</a>
+            </div>
 
         </div>
     {{/each}}

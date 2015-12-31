@@ -1,3 +1,5 @@
+_ = lodash;
+
 Template.allschedules.helpers({
     "allsessions":function() {
         var volunteers = _.sortBy(Meteor.users.find({"groups": "Volunteers"}).fetch(), function (val) {
@@ -11,7 +13,10 @@ Template.allschedules.helpers({
             var volunteerSessions = _.groupBy(_.sortBy(vs,function(val){ return val.SessionStartTime}), function(val2){ return moment(val2.SessionStartTime).format('M-D-YY'); });
 
             var minutes = 0;
+
             for (var i = 0; i < vs.length; i++) {
+                vs[i].SessionEndTime = vs[i].SessionEndTime.replace("2015", "2016");
+                vs[i].SessionStartTime = vs[i].SessionStartTime.replace("2015", "2016");
                 minutes += moment(vs[i].SessionEndTime).diff(moment(vs[i].SessionStartTime),'minutes');
             }
 
@@ -25,6 +30,9 @@ Template.allschedules.helpers({
             });
 
         });
+
+        console.log("min", _.min(allSessions, "DurationHours").DurationHours);
+        console.log("max", _.max(allSessions, "DurationHours").DurationHours);
 
         return allSessions;
 

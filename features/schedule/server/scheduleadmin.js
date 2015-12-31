@@ -126,16 +126,10 @@ Meteor.methods({
 
                             if (s >= 0) {
                                 // afternoon person
-                                afternoon.push({
-                                    id: user._id,
-                                    minutes: user.minutes
-                                });
+                                afternoon.push(vol);
                             }
                             else {
-                                morning.push({
-                                    id: user._id,
-                                    minutes: user.minutes
-                                });
+                                morning.push(vol);
                             }
                         });
                     }
@@ -144,21 +138,17 @@ Meteor.methods({
                 _.each(volunteers, function (vol) {
                     // check if their already in it
 
+                    vol.minutes = vol.minutes || 0;
+
                     if (_.contains(afternoon, vol._id) || _.contains(morning, vol._id)) {
                         return;
                     }
 
-                    if (morning.length < afternoon.length) {
-                        morning.push({
-                            id: vol._id,
-                            minutes: 0
-                        });
+                    if (morning.length < afternoon.length || true) {
+                        morning.push(vol);
                     }
                     else {
-                        afternoon.push({
-                            id: vol._id,
-                            minutes: 0
-                        });
+                        afternoon.push(vol);
                     }
                 });
 
@@ -186,7 +176,7 @@ Meteor.methods({
                     var isAfternoon = false;
 
                     if (s >= 0) {
-                        isAfternoon = true;
+                        //isAfternoon = true;
                     }
 
                     var collide = [];
@@ -215,9 +205,9 @@ Meteor.methods({
 
                         if(isAfternoon) {
                             for(var j = 0; j < afternoonList.length; j++) {
-                                if(!_.contains(collide, afternoonList[j].id)) {
+                                if(!_.contains(collide, afternoonList[j]._id)) {
                                     cUser = afternoonList[j];
-                                    _.remove(afternoonList, {id: afternoonList[j].id});
+                                    _.remove(afternoonList, {_id: afternoonList[j]._id});
                                     break;
                                 }
                             }
@@ -228,7 +218,7 @@ Meteor.methods({
                                 var aList = _.sortBy(afternoon, "minutes");
 
                                 for(var j = 0; j < aList.length; j++) {
-                                    if(!_.contains(collide, aList[j].id)) {
+                                    if(!_.contains(collide, aList[j]._id)) {
                                         cUser = aList[j];
                                         break;
                                     }
@@ -241,7 +231,7 @@ Meteor.methods({
                                 var aList = _.sortBy(morning, "minutes");
 
                                 for(var j = 0; j < aList.length; j++) {
-                                    if(!_.contains(collide, aList[j].id)) {
+                                    if(!_.contains(collide, aList[j]._id)) {
                                         cUser = aList[j];
                                         break;
                                     }
@@ -252,9 +242,9 @@ Meteor.methods({
                         }
                         else {
                             for(var j = 0; j < morningList.length; j++) {
-                                if(!_.contains(collide, morningList[j].id)) {
+                                if(!_.contains(collide, morningList[j]._id)) {
                                     cUser = morningList[j];
-                                    _.remove(morningList, {id: morningList[j].id});
+                                    _.remove(morningList, {_id: morningList[j]._id});
                                     break;
                                 }
                             }
@@ -265,7 +255,7 @@ Meteor.methods({
                                 var aList = _.sortBy(morning, "minutes");
 
                                 for(var j = 0; j < aList.length; j++) {
-                                    if(!_.contains(collide, aList[j].id)) {
+                                    if(!_.contains(collide, aList[j]._id)) {
                                         cUser = aList[j];
                                         break;
                                     }
@@ -278,7 +268,7 @@ Meteor.methods({
                                 var aList = _.sortBy(afternoon, "minutes");
 
                                 for(var j = 0; j < aList.length; j++) {
-                                    if(!_.contains(collide, aList[j].id)) {
+                                    if(!_.contains(collide, aList[j]._id)) {
                                         cUser = aList[j];
                                         break;
                                     }
@@ -290,8 +280,10 @@ Meteor.methods({
 
                         if(cUser != null) {
                             //console.log("assigned user to", '"' + session.Title + '"', "in seat", i);
-                            session.assignees.push(cUser.id);
-                            cUser.minutes += moment(session.SessionEndTime).diff(moment(session.SessionStartTime), "minutes");
+                            session.assignees.push(cUser._id);
+                            var start = session.SessionStartTime.replace("2015", "2016");
+                            var end = session.SessionEndTime.replace("2015", "2016");
+                            cUser.minutes += moment(end).diff(moment(session.SessionStartTime), "minutes");
                         }
                         else {
                             console.log("failed assigning user to", '"' + session.Title + '"', "in seat", i, "on day", day.format());
@@ -300,6 +292,10 @@ Meteor.methods({
 
                     Meteor.call("saveAssignees", session._id, session.assignees);
                 });
+                /*console.log("morning min on", day.format(), _.min(morning, "minutes"));
+                console.log("morning max on", day.format(), _.max(morning, "minutes"));
+                console.log("afternoon min on", day.format(), _.min(afternoon, "minutes"));
+                console.log("afternoon max on", day.format(), _.max(afternoon, "minutes"));*/
             });
 
             console.log("done");
