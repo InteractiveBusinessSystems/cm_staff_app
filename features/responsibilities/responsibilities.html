@@ -1,14 +1,15 @@
 <template name="responsibilities">
-<h2>Volunteer Responsibilities</h2>
-    <a name="top"></a>
+    <div id="top"></div>
+    <h2>Volunteer Responsibilities</h2>
+
     <ul>
-        <li><a href="#registration">Registration</a></li>
-        <li><a href="#sessionproctor">Session Proctor</a></li>
-        <li><a href="#sponsorbooth">Sponsor Booth</a></li>
-        <li><a href="#coatcheck">Coat Check</a></li>
-        <li><a href="#kidzmash">KidzMash</a></li>
-        <li><a href="#tabletents">Table Tents</a></li>
-        <li><a href="#sponsorgolf">Sponsor Golf</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='registration'}}">Registration</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='sessionproctor'}}">Session Proctor</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='sponsorbooth'}}">Sponsor Booth</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='coatcheck'}}">Coat Check</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='kidzmash'}}">KidzMash</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='tabletents'}}">Table Tents</a></li>
+        <li><a href="{{pathFor 'responsibilities' hash='sponsorgolf'}}">Sponsor Golf</a></li>
     </ul>
 
 <div class="responsibilitiesContainer">
@@ -16,7 +17,7 @@
     <div class="responsibilitiesHeader" id="registration">Registration</div>
     At the Registration booth, you will be checking attendees in, giving them the necessary swag, answering questions and many other odd jobs.
     <br />
-    <a href="#top" class="topLink">- top -</a>
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 
     <a name="#sessionproctor"></a>
     <div class="responsibilitiesHeader" id="sessionproctor">Session Proctor</div>
@@ -50,7 +51,7 @@
         <li>Make sure the microphone(s) are left in the room</li>
         <li>Make sure any other adapters are left with you and return to registration desk.</li>
     </ul>
-    <a href="#top" class="topLink">- top -</a>
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 
     <a name="#sponsorbooth"></a>
     <div class="responsibilitiesHeader" id="sponsorbooth">Sponsor Booth</div>
@@ -80,7 +81,7 @@
             <li>Helping schlepp the cart around to transfer prizes</li>
             <li>Helping with the raffle as needed</li>
         </ol>
-    <a href="#top" class="topLink">- top -</a>
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 
     <a name="#coatcheck"></a>
     <div class="responsibilitiesHeader" id="coatcheck">Coat Check</div>
@@ -99,12 +100,13 @@
         <li>Give Attendee their coat</li>
     </ol>
 
-    <a href="#top" class="topLink">- top -</a>
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 
     <a name="#kidzmash"></a>
     <div class="responsibilitiesHeader" id="kidzmash">KidzMash</div>
     At KidzMash, you will watch over the KidzMash rooms and sessions and help out when needed.  Your main point of contact is Gabrielle Sempf.
-    <a href="#top" class="topLink">- top -</a>
+    <br />
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 
     <a name="#tabletents"></a>
     <div class="responsibilitiesHeader" id="tabletents">Table Tents</div>
@@ -112,12 +114,12 @@
     the tents are set up for lunch.  Friday they need setup for breakfast. The tents should be placed before breakfast/lunch starts.  If there
     are more tents than tables, please put 2 on each table.
     <br />
-    <a href="#top" class="topLink">- top -</a>
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 
     <a name="#sponsorgolf"></a>
         <div class="responsibilitiesHeader" id="sponsorgolf">Sponsor Golf</div>
         For Wednesday evening, this will involve helping out sponsors and running golf balls and clubs from the end of the course back to the beginning and collecting score cards.
     <br />
-    <a href="#top" class="topLink">- top -</a>
+    <a href="{{pathFor 'responsibilities' hash='top'}}" class="topLink">- top -</a>
 </div>
 </template>
