@@ -12,7 +12,7 @@ Template.home.helpers({
 
 
         var todaysSessionsSorted = _.sortBy(todaysSessions, function(val){
-            return moment(val.SessionStartTime).diff(moment("01-01-2000"))
+            return moment(val.SessionStartTime).diff(moment("2000-01-01"))
         });
 
         var todaysSessionsGrouped = _.toArray(_.groupBy(todaysSessionsSorted, function(val){
@@ -26,7 +26,8 @@ Template.home.helpers({
     },
     checkedInClass: function(session){
         if(session.assignees.length !== session.checkInInfo.proctorCheckIns.length){
-            return 'checkedInPartial';
+            if(getSessionStatus(session.checkInInfo) == 'Done')
+            return 'checkedInDone';
         }
         return 'checkedIn';
     },
@@ -55,18 +56,7 @@ Template.home.helpers({
         return sessionType != 'Static';
     },
     'sessionStatus': function (checkInInfo) {
-        if (checkInInfo.proctorCheckInTime === "") {
-            return "Not Started";
-        }
-        else if (checkInInfo.proctorCheckInTime !== "" && checkInInfo.sessionStartTime === "") {
-            return "Checked In";
-        }
-        else if (checkInInfo.proctorCheckInTime !== "" && checkInInfo.sessionStartTime !== "" && checkInInfo.sessionEndTime === "") {
-            return "Started";
-        }
-        else {
-            return "Done";
-        }
+        return getSessionStatus(checkInInfo);
     }
 });
 
@@ -81,3 +71,18 @@ Template.home.events({
 
     }
 });
+
+function getSessionStatus(checkInInfo){
+    if (checkInInfo.proctorCheckInTime === "") {
+        return "Not Started";
+    }
+    else if (checkInInfo.proctorCheckInTime !== "" && checkInInfo.sessionStartTime === "") {
+        return "Checked In";
+    }
+    else if (checkInInfo.proctorCheckInTime !== "" && checkInInfo.sessionStartTime !== "" && checkInInfo.sessionEndTime === "") {
+        return "Started";
+    }
+    else {
+        return "Done";
+    }
+}

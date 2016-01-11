@@ -76,5 +76,7 @@
     <div class="scheduleAdminSession {{ getCardState . }}"
          style="top:{{getTop SessionStartTime}}; height:{{getHeight SessionStartTime SessionEndTime}}">
         <div class="sessionTitle">{{Title}}</div>
+        <div>{{formatToTime SessionStartTime}}</div>
+        <div>{{formatToTime SessionEndTime}}</div>
     </div>
 </template>

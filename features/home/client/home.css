@@ -1,6 +1,6 @@
 .checkInStatus{
     font-size: 8pt;
-    height: 135px;
+    height: 160px;
     width: 140px;
     float: left;
     border: solid 1px #fff;
@@ -17,6 +17,10 @@
 
 .checkedInPartial{
     background-color: yellow;
+}
+
+.checkedInPartial{
+    background-color: lightgreen;
 }
 
 .checkInStatusHeader{

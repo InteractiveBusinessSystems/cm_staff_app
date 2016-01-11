@@ -21,5 +21,7 @@ Router.map(function () {
     this.route('account', {path: '/account'});
     this.route('exportsessiondata', {path: '/exportsessiondata'});
     this.route('allschedules', {path: '/allschedules'});
+    this.route('allschedulesvol', {path: '/allschedulesvol'});
+
     this.route('responsibilities', {path: '/responsibilities'});
 });

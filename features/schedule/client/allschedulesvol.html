@@ -1,0 +1,20 @@
+<template name="allschedulesvol">
+
+    {{#each allsessions}}
+        <h3 class="volunteerName"><a href="mailto:{{EmailAddress}}">{{LastName}}, {{FirstName}}</a></h3>
+        {{EmailAddress}}
+        {{#each Sessions}}
+            <div class="scheduleDateHeader">{{formatToDate this.[0].SessionStartTime}}</div>
+            {{#each .}}
+                <div class="scheduleSession">
+                    <div class="scheduleTime">{{formatToTime SessionStartTime}} to {{formatToTime SessionEndTime}}</div>
+                    <div class="scheduleTitle">{{Title}}</div>
+                </div>
+            {{/each}}
+        {{/each}}
+        <hr />
+    {{/each}}
+
+
+
+</template>

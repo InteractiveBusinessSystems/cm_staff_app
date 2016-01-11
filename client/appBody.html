@@ -60,7 +60,7 @@
                 {{#if isAdminRole currentUser.role}}
                     <li><a href="{{pathFor route='home'}}" data-toggle="collapse" data-target=".navbar-collapse">Dashboard</a></li>
                 {{/if}}
-
+                    <li><a href="{{pathFor route='allschedulesvol'}}" data-toggle="collapse" data-target=".navbar-collapse">All Schedules</a></li>
                     <li><a href="{{pathFor route='account'}}" data-toggle="collapse" data-target=".navbar-collapse">My Account</a></li>
                 {{#if isAdminRole currentUser.role}}
                     <li class="dropdown">
