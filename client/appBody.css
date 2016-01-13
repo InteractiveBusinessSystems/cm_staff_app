@@ -97,3 +97,13 @@ Import Fonts
     color: red;
     font-size: small;
 }
+
+.app-footer{
+    text-align: center;
+    background-color: #f67f01;
+    color: #FFF;
+}
+
+.app-footer a{
+    color: #FFF;
+}
