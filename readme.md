@@ -27,3 +27,7 @@ Requires:
 [Session Feed](https://cmprod-speakers.azurewebsites.net/api/sessionsdata)
 
 [Speaker Feed](https://cmprod-speakers.azurewebsites.net/api/speakersdata)
+
+The CodeMash Staff application was written for CodeMash 2016 by [Interactive Business Systems](http://www.ibs.com/it-consulting/it-solutions/managed-it-solutions.cmsx).
+
+![IBS](https://avatars1.githubusercontent.com/u/931099?v=3&s=200)
