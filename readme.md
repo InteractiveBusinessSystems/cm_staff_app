@@ -31,3 +31,9 @@ Requires:
 The CodeMash Staff application was written for CodeMash 2016 by [Interactive Business Systems](http://www.ibs.com/it-consulting/it-solutions/managed-it-solutions.cmsx).
 
 ![IBS](https://avatars1.githubusercontent.com/u/931099?v=3&s=200)
+
+IBS has developed a core team with deep talent in Mobile Development, SharePoint Services 
+and Custom .NET Development. The team includes project managers, business analysts, architects, 
+.NET and SharePoint developers, UI specialists, DBA's and QA Analysts. We can provide fully 
+managed projects in these areas or supply you with the skills you need to round out your 
+team and manage yourself.
