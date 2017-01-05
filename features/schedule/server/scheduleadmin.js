@@ -10,7 +10,7 @@ Meteor.methods({
 
                 var sessions = result.data.filter(function (item) {
                     return item.SessionType === "Pre-Compiler" ||
-                        item.SessionType === "Regular Session" ||
+                        item.SessionType === "General Session" ||
                         item.SessionType === "Static" ||
                         item.SessionType === "Sponsor Session";
                 });
@@ -96,7 +96,7 @@ Meteor.methods({
     scheduleAutofill: function () {
         var sessions = SessionList.find({}).fetch();
 
-        var dates = SessionDates.find({}).fetch();
+        var dates = SessionDates.find({}).fetch();git st
         var volunteers = Meteor.users.find({"groups": "Volunteers"}).fetch();
 
         var split = "13:00:00";

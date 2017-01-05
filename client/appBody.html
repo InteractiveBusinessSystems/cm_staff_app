@@ -57,6 +57,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{pathFor route='schedule'}}" data-toggle="collapse" data-target=".navbar-collapse">My Schedule</a></li>
                     <li><a href="{{pathFor route='responsibilities'}}" data-toggle="collapse" data-target=".navbar-collapse">Responsibilities</a></li>
+                    <li><a href="{{pathFor route='map'}}" data-toggle="collapse" data-target=".navbar-collapse">Map</a></li>
                 {{#if isAdminRole currentUser.role}}
                     <li><a href="{{pathFor route='home'}}" data-toggle="collapse" data-target=".navbar-collapse">Dashboard</a></li>
                 {{/if}}
@@ -64,7 +65,9 @@
                     <li><a href="{{pathFor route='account'}}" data-toggle="collapse" data-target=".navbar-collapse">My Account</a></li>
                 {{#if isAdminRole currentUser.role}}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                        onclick="$('.dropdown').toggleClass('open');"
+                        >Admin <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{pathFor route='groups'}}" data-toggle="collapse" data-target=".navbar-collapse">Groups</a></li>
                             <li><a href="{{pathFor route='listUsers'}}" data-toggle="collapse" data-target=".navbar-collapse">Users</a></li>

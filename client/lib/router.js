@@ -24,4 +24,5 @@ Router.map(function () {
     this.route('allschedulesvol', {path: '/allschedulesvol'});
 
     this.route('responsibilities', {path: '/responsibilities'});
+    this.route('map', {path: '/map'});
 });

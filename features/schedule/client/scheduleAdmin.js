@@ -124,14 +124,14 @@ Template.scheduleAdminSession.helpers({
 });
 
 Template.registerHelper('getTop', function (startTime) {
-    var x = moment.duration(startTime) / 60000;
+    var x = moment.duration(moment(startTime).format('HH:mm')) / 60000;
     x = x - 375;
     return x.toString() + 'px';
 });
 
 Template.registerHelper('getHeight', function (startTime, endTime) {
-    var x = moment.duration(startTime) / 60000;
-    var y = moment.duration(endTime) / 60000;
+    var x = moment.duration(moment(startTime).format('HH:mm')) / 60000;
+    var y = moment.duration(moment(endTime).format('HH:mm')) / 60000;
     var z = (y - x);
     return z.toString() + 'px';
 });
